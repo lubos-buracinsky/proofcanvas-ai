@@ -32,7 +32,7 @@ export default function AIGenerateModal({ open, onClose }) {
   const [idea, setIdea] = useState('')
   const [error, setError] = useState('')
   const { isLoading, streamedText, streamRequest, cancel, reset } = useAI()
-  const { setCanvasBlocks, updateCanvasName } = useCanvas()
+  const { createCanvas, setCanvasBlocks, updateCanvasName } = useCanvas()
   const { t } = useTranslation()
 
   const handleGenerate = useCallback(async () => {
@@ -42,9 +42,9 @@ export default function AIGenerateModal({ open, onClose }) {
       const fullText = await streamRequest('/api/ai/generate', { idea: idea.trim() })
       const parsed = parseCanvasJSON(fullText)
       if (parsed) {
-        setCanvasBlocks(parsed)
         const name = idea.trim().length > 40 ? idea.trim().slice(0, 40) + '...' : idea.trim()
-        updateCanvasName(name)
+        createCanvas(name)
+        setCanvasBlocks(parsed)
         setTimeout(() => { reset(); setIdea(''); onClose() }, 500)
       } else {
         setError(t('ai.parseFailed'))
@@ -52,7 +52,7 @@ export default function AIGenerateModal({ open, onClose }) {
     } catch (err) {
       setError(err.message)
     }
-  }, [idea, streamRequest, setCanvasBlocks, updateCanvasName, reset, onClose, t])
+  }, [idea, streamRequest, createCanvas, setCanvasBlocks, updateCanvasName, reset, onClose, t])
 
   const handleClose = () => { if (isLoading) cancel(); reset(); setError(''); onClose() }
 
