@@ -36,10 +36,14 @@ export default function Layout() {
     if (!el) return
     const onScroll = () => {
       const y = el.scrollTop
-      const delta = y - lastScrollY.current
-      if (delta > 8 && y > 20) setToolbarHidden(true)
-      else if (delta < -8) setToolbarHidden(false)
-      lastScrollY.current = y
+      // Update state based on accumulated direction
+      if (y > lastScrollY.current + 5 && y > 20) {
+        setToolbarHidden(true)
+        lastScrollY.current = y
+      } else if (y < lastScrollY.current - 5 || y <= 20) {
+        setToolbarHidden(false)
+        lastScrollY.current = y
+      }
     }
     el.addEventListener('scroll', onScroll, { passive: true })
     return () => el.removeEventListener('scroll', onScroll)
