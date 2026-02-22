@@ -1,33 +1,64 @@
 import { useState, useRef, useCallback, useEffect } from 'react'
 import GridViewIcon from '@mui/icons-material/GridView'
+import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh'
 import ThemeToggle from './Common/ThemeToggle'
 import LangToggle from './Common/LangToggle'
 import CanvasToolbar from './Canvas/CanvasToolbar'
 import CanvasBoard from './Canvas/CanvasBoard'
 import AIGenerateModal from './AI/AIGenerateModal'
 import AIValidation from './AI/AIValidation'
-import AISuggestModal from './AI/AISuggestModal'
 import FollowUpPanel from './FollowUp/FollowUpPanel'
 import { exportCanvasPdf } from '../utils/exportPdf'
 import useCanvas from '../hooks/useCanvas'
+import useTranslation from '../hooks/useTranslation'
+import Button from './Common/Button'
+
+function useScrollDirection() {
+  const [collapsed, setCollapsed] = useState(false)
+
+  useEffect(() => {
+    let lastY = window.scrollY
+    let ticking = false
+
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const currentY = window.scrollY
+          if (currentY <= 10) {
+            setCollapsed(false)
+          } else if (currentY > lastY + 5) {
+            setCollapsed(true)
+          } else if (currentY < lastY - 5) {
+            setCollapsed(false)
+          }
+          lastY = currentY
+          ticking = false
+        })
+        ticking = true
+      }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  return collapsed
+}
 
 export default function Layout() {
   const { activeCanvas } = useCanvas()
+  const { t } = useTranslation()
   const [showGenerate, setShowGenerate] = useState(false)
   const [showValidation, setShowValidation] = useState(false)
   const [showFollowUp, setShowFollowUp] = useState(false)
-  const [suggestBlockId, setSuggestBlockId] = useState(null)
   const canvasRef = useRef(null)
+  const collapsed = useScrollDirection()
 
   const handleExport = useCallback(() => {
     if (canvasRef.current && activeCanvas) {
       exportCanvasPdf(canvasRef, activeCanvas.name)
     }
   }, [activeCanvas])
-
-  const handleSuggest = useCallback((blockId) => {
-    setSuggestBlockId(blockId)
-  }, [])
 
   return (
     <div className="h-screen flex flex-col bg-surface dark:bg-dark-surface">
@@ -39,7 +70,11 @@ export default function Layout() {
             Lean Canvas <span className="text-primary">AI</span>
           </h1>
         </div>
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-2">
+          <Button variant="primary" size="sm" onClick={() => setShowGenerate(true)}>
+            <AutoFixHighIcon sx={{ fontSize: 16 }} />
+            {t('toolbar.generateIdea')}
+          </Button>
           <LangToggle />
           <ThemeToggle />
         </div>
@@ -48,7 +83,7 @@ export default function Layout() {
       {/* Sticky Toolbar */}
       <div className="sticky top-0 z-30">
         <CanvasToolbar
-          onGenerate={() => setShowGenerate(true)}
+          collapsed={collapsed}
           onValidate={() => setShowValidation(true)}
           onFollowUp={() => setShowFollowUp(true)}
           onExport={handleExport}
@@ -57,13 +92,12 @@ export default function Layout() {
 
       {/* Main content */}
       <main className="flex-1 overflow-auto">
-        <CanvasBoard ref={canvasRef} onSuggest={handleSuggest} />
+        <CanvasBoard ref={canvasRef} />
       </main>
 
       {/* Modals */}
       <AIGenerateModal open={showGenerate} onClose={() => setShowGenerate(false)} />
       <AIValidation open={showValidation} onClose={() => setShowValidation(false)} />
-      <AISuggestModal blockId={suggestBlockId} onClose={() => setSuggestBlockId(null)} />
       <FollowUpPanel open={showFollowUp} onClose={() => setShowFollowUp(false)} />
     </div>
   )

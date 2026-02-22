@@ -86,6 +86,19 @@ const translations = {
     'followup.stop': 'Zastavit',
     'followup.loading': 'Generuji...',
     'followup.empty': 'Klikněte na "Generovat" pro vytvoření dokumentu na základě vašeho canvasu.',
+    // Block actions
+    'block.improve': 'Vylepšit',
+    'block.expand': 'Rozbalit',
+    'block.collapse': 'Sbalit',
+    'ai.usesuggestion': 'Použít návrh',
+    'ai.replacecontent': 'Nahradit obsah',
+    'ai.improving': 'Vylepšuji...',
+    'ai.scoring': 'Hodnotím...',
+    // Follow-up
+    'followup.exportPdf': 'Export PDF',
+    // Toolbar
+    'toolbar.generateIdea': 'Generovat nový nápad',
+    'toolbar.validation': 'Validace',
     // Theme
     'theme.light': 'Přepnout na světlý režim',
     'theme.dark': 'Přepnout na tmavý režim',
@@ -177,6 +190,19 @@ const translations = {
     'followup.stop': 'Stop',
     'followup.loading': 'Generating...',
     'followup.empty': 'Click "Generate" to create a document based on your canvas.',
+    // Block actions
+    'block.improve': 'Improve',
+    'block.expand': 'Expand',
+    'block.collapse': 'Collapse',
+    'ai.usesuggestion': 'Use suggestion',
+    'ai.replacecontent': 'Replace content',
+    'ai.improving': 'Improving...',
+    'ai.scoring': 'Scoring...',
+    // Follow-up
+    'followup.exportPdf': 'Export PDF',
+    // Toolbar
+    'toolbar.generateIdea': 'Generate new idea',
+    'toolbar.validation': 'Validation',
     // Theme
     'theme.light': 'Switch to light mode',
     'theme.dark': 'Switch to dark mode',

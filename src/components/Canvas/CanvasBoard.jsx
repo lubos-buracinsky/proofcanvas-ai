@@ -48,7 +48,7 @@ const TABLET_POSITIONS = {
   'revenue-streams':    { gridColumn: '1 / 5', gridRow: '5 / 6' },
 }
 
-const CanvasBoard = forwardRef(function CanvasBoard({ onSuggest }, ref) {
+const CanvasBoard = forwardRef(function CanvasBoard(props, ref) {
   const { activeCanvas, updateBlock } = useCanvas()
   const bp = useBreakpoint()
 
@@ -71,7 +71,6 @@ const CanvasBoard = forwardRef(function CanvasBoard({ onSuggest }, ref) {
             value={activeCanvas.blocks[block.id]}
             subsectionValue={block.subsection ? activeCanvas.blocks[block.subsection.id] : undefined}
             onChange={updateBlock}
-            onSuggest={onSuggest}
             index={i}
             posOverride={posOverride}
           />

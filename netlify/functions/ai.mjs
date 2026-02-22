@@ -145,18 +145,47 @@ Každá hodnota by měla být stručné odrážky (použij \\n pro nové řádky
     case 'suggest': {
       if (!blockId) throw new Error('ID bloku je vyžadováno.')
       const currentValue = blocks?.[blockId] || '(prázdný)'
-      return {
-        max_tokens: 2048,
-        messages: [{
-          role: 'user',
-          content: `Jsi expert na Lean Canvas. Odpovídej ČESKY. Zde je aktuální canvas:
+      const { format } = body
+      const suggestPrompt = format === 'replace'
+        ? `Jsi expert na Lean Canvas. Odpovídej ČESKY. Zde je aktuální canvas:
+
+${canvasContext}
+
+Přepiš obsah bloku "${blockId}" na vylepšenou verzi. Aktuální obsah:
+${currentValue}
+
+Vrať POUZE vylepšený text vhodný k přímému vložení do bloku. Použij odrážky s • na začátku řádku. Žádný markdown, žádné nadpisy, žádná vysvětlení – pouze čistý vylepšený obsah bloku.`
+        : `Jsi expert na Lean Canvas. Odpovídej ČESKY. Zde je aktuální canvas:
 
 ${canvasContext}
 
 Uživatel chce vylepšit blok "${blockId}". Aktuální obsah:
 ${currentValue}
 
-Poskytni 3 konkrétní, akční návrhy na vylepšení tohoto bloku. Zvaž kontext celého canvasu. Formátuj jako markdown s číslovanými návrhy, každý s krátkým vysvětlením proč je lepší.`,
+Poskytni 3 konkrétní, akční návrhy na vylepšení tohoto bloku. Zvaž kontext celého canvasu. Formátuj jako markdown s číslovanými návrhy, každý s krátkým vysvětlením proč je lepší.`
+      return {
+        max_tokens: 2048,
+        messages: [{ role: 'user', content: suggestPrompt }],
+      }
+    }
+
+    case 'block-score': {
+      if (!blockId) throw new Error('ID bloku je vyžadováno.')
+      const blockValue = blocks?.[blockId] || '(prázdný)'
+      return {
+        max_tokens: 256,
+        messages: [{
+          role: 'user',
+          content: `Jsi expert na Lean Canvas. Ohodnoť kvalitu bloku "${blockId}" v kontextu celého canvasu skóre 0–10 (jedno desetinné místo). Odpovídej ČESKY.
+
+Canvas:
+${canvasContext}
+
+Obsah hodnoceného bloku "${blockId}":
+${blockValue}
+
+Vrať POUZE validní JSON (žádný markdown):
+{"score": 7.5, "summary": "Krátké zdůvodnění..."}`,
         }],
       }
     }

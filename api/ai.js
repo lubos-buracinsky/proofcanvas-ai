@@ -85,28 +85,75 @@ Každá hodnota by měla být stručné odrážky (použij \\n pro nové řádky
 // Suggest improvements for a specific block
 router.post('/suggest', async (req, res) => {
   const sse = sseStream(res)
-  const { blockId, blocks } = req.body
+  const { blockId, blocks, format } = req.body
 
   if (!blockId) return sse.error('ID bloku je vyžadováno.')
 
   const canvasContext = blocksToContext(blocks)
   const currentValue = blocks?.[blockId] || '(prázdný)'
 
-  try {
-    const stream = anthropic.messages.stream({
-      model: MODEL,
-      max_tokens: 2048,
-      messages: [
-        {
-          role: 'user',
-          content: `Jsi expert na Lean Canvas. Odpovídej ČESKY. Zde je aktuální canvas:
+  const prompt = format === 'replace'
+    ? `Jsi expert na Lean Canvas. Odpovídej ČESKY. Zde je aktuální canvas:
+
+${canvasContext}
+
+Přepiš obsah bloku "${blockId}" na vylepšenou verzi. Aktuální obsah:
+${currentValue}
+
+Vrať POUZE vylepšený text vhodný k přímému vložení do bloku. Použij odrážky s • na začátku řádku. Žádný markdown, žádné nadpisy, žádná vysvětlení – pouze čistý vylepšený obsah bloku.`
+    : `Jsi expert na Lean Canvas. Odpovídej ČESKY. Zde je aktuální canvas:
 
 ${canvasContext}
 
 Uživatel chce vylepšit blok "${blockId}". Aktuální obsah:
 ${currentValue}
 
-Poskytni 3 konkrétní, akční návrhy na vylepšení tohoto bloku. Zvaž kontext celého canvasu. Formátuj jako markdown s číslovanými návrhy, každý s krátkým vysvětlením proč je lepší.`,
+Poskytni 3 konkrétní, akční návrhy na vylepšení tohoto bloku. Zvaž kontext celého canvasu. Formátuj jako markdown s číslovanými návrhy, každý s krátkým vysvětlením proč je lepší.`
+
+  try {
+    const stream = anthropic.messages.stream({
+      model: MODEL,
+      max_tokens: 2048,
+      messages: [{ role: 'user', content: prompt }],
+    })
+
+    for await (const event of stream) {
+      if (event.type === 'content_block_delta' && event.delta.type === 'text_delta') {
+        sse.send(event.delta.text)
+      }
+    }
+    sse.done()
+  } catch (err) {
+    sse.error(err.message)
+  }
+})
+
+// Score a specific block
+router.post('/block-score', async (req, res) => {
+  const sse = sseStream(res)
+  const { blockId, blocks } = req.body
+
+  if (!blockId) return sse.error('ID bloku je vyžadováno.')
+  const canvasContext = blocksToContext(blocks)
+  const currentValue = blocks?.[blockId] || '(prázdný)'
+
+  try {
+    const stream = anthropic.messages.stream({
+      model: MODEL,
+      max_tokens: 256,
+      messages: [
+        {
+          role: 'user',
+          content: `Jsi expert na Lean Canvas. Ohodnoť kvalitu bloku "${blockId}" v kontextu celého canvasu skóre 0–10 (jedno desetinné místo). Odpovídej ČESKY.
+
+Canvas:
+${canvasContext}
+
+Obsah hodnoceného bloku "${blockId}":
+${currentValue}
+
+Vrať POUZE validní JSON (žádný markdown):
+{"score": 7.5, "summary": "Krátké zdůvodnění..."}`,
         },
       ],
     })

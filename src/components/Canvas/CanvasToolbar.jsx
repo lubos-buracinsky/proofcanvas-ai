@@ -1,60 +1,94 @@
-import { useState, useCallback, useEffect } from 'react'
+import { useState, useCallback, useRef, useEffect } from 'react'
+import { motion, AnimatePresence } from 'motion/react'
 import AddIcon from '@mui/icons-material/Add'
-import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
-import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh'
 import FactCheckIcon from '@mui/icons-material/FactCheck'
 import RocketLaunchIcon from '@mui/icons-material/RocketLaunch'
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf'
-import PersonIcon from '@mui/icons-material/Person'
-import GradeIcon from '@mui/icons-material/Grade'
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import useCanvas from '../../hooks/useCanvas'
 import useTranslation from '../../hooks/useTranslation'
 import Button from '../Common/Button'
 
-function ScoreBadge({ score, isLoading, onClick }) {
+function InlineScore({ score, isLoading }) {
   if (isLoading) {
-    return (
-      <button
-        className="flex items-center gap-1 px-2.5 py-1 rounded-full bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 text-amber-600 dark:text-amber-400 text-xs font-medium animate-pulse cursor-pointer"
-        disabled
-      >
-        <GradeIcon sx={{ fontSize: 14 }} />
-        ...
-      </button>
-    )
+    return <span className="text-sm font-bold text-amber-500 animate-pulse">...</span>
   }
-
-  if (!score) {
-    return (
-      <button
-        onClick={onClick}
-        className="flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-alt dark:bg-dark-surface border border-border dark:border-dark-border text-text-secondary dark:text-dark-text-secondary text-xs font-medium hover:bg-surface-hover dark:hover:bg-dark-surface-hover transition-colors cursor-pointer"
-        title="AI hodnocení"
-      >
-        <GradeIcon sx={{ fontSize: 14 }} />
-        AI
-      </button>
-    )
-  }
-
+  if (!score) return null
   const s = score.score
-  const color = s >= 7 ? 'emerald' : s >= 4 ? 'amber' : 'red'
-  const bgClass = `bg-${color}-50 dark:bg-${color}-900/20 border-${color}-200 dark:border-${color}-800 text-${color}-600 dark:text-${color}-400`
-
+  const colorClass = s >= 7 ? 'text-emerald-600 dark:text-emerald-400' : s >= 4 ? 'text-amber-600 dark:text-amber-400' : 'text-red-600 dark:text-red-400'
   return (
-    <button
-      onClick={onClick}
-      className={`flex items-center gap-1 px-2.5 py-1 rounded-full border text-xs font-bold cursor-pointer hover:opacity-80 transition-opacity ${bgClass}`}
-      title={score.summary || 'AI hodnocení'}
-    >
-      <GradeIcon sx={{ fontSize: 14 }} />
+    <span className={`text-base font-bold ${colorClass}`} title={score.summary || ''}>
       {s}/10
-    </button>
+    </span>
   )
 }
 
-export default function CanvasToolbar({ onGenerate, onValidate, onFollowUp, onExport }) {
-  const { activeCanvas, canvases, createCanvas, deleteCanvas, setActiveCanvas, updateCanvasName, filledCount, isEmpty, score, setScoreData } = useCanvas()
+function CanvasDropdown({ canvases, activeId, onChange, onCreate }) {
+  const [open, setOpen] = useState(false)
+  const ref = useRef(null)
+  const active = canvases.find(c => c.id === activeId)
+
+  useEffect(() => {
+    const handler = (e) => {
+      if (ref.current && !ref.current.contains(e.target)) setOpen(false)
+    }
+    document.addEventListener('mousedown', handler)
+    return () => document.removeEventListener('mousedown', handler)
+  }, [])
+
+  return (
+    <div className="relative" ref={ref}>
+      <button
+        onClick={() => setOpen(v => !v)}
+        className="flex items-center gap-2 px-3 pr-3 py-1.5 rounded-lg border border-border dark:border-dark-border bg-white dark:bg-dark-surface hover:bg-surface-hover dark:hover:bg-dark-surface-hover transition-colors cursor-pointer min-w-0 max-w-[260px]"
+      >
+        <span className="text-sm text-text dark:text-dark-text truncate">
+          {active?.name || '—'}
+          {active?.author && <span className="text-text-secondary dark:text-dark-text-secondary ml-1">({active.author})</span>}
+        </span>
+        <KeyboardArrowDownIcon sx={{ fontSize: 18 }} className={`text-text-secondary dark:text-dark-text-secondary transition-transform flex-shrink-0 ${open ? 'rotate-180' : ''}`} />
+      </button>
+
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, y: -4 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -4 }}
+            transition={{ duration: 0.15 }}
+            className="absolute top-full left-0 mt-1 min-w-[240px] max-w-[320px] bg-white dark:bg-dark-surface-alt border border-border dark:border-dark-border rounded-xl shadow-lg z-50 overflow-hidden"
+          >
+            <div className="max-h-64 overflow-y-auto py-1">
+              {canvases.map(c => (
+                <button
+                  key={c.id}
+                  onClick={() => { onChange(c.id); setOpen(false) }}
+                  className={`w-full text-left px-3 py-2 text-sm transition-colors cursor-pointer hover:bg-surface-hover dark:hover:bg-dark-surface-hover
+                    ${c.id === activeId ? 'bg-primary/5 dark:bg-primary/10 text-primary font-medium' : 'text-text dark:text-dark-text'}`}
+                >
+                  {c.name}
+                  {c.author && <span className="text-text-secondary dark:text-dark-text-secondary ml-1 text-xs">({c.author})</span>}
+                </button>
+              ))}
+            </div>
+            <div className="border-t border-border dark:border-dark-border p-1">
+              <button
+                onClick={() => { onCreate(); setOpen(false) }}
+                className="w-full flex items-center gap-2 px-3 py-2 text-sm text-primary hover:bg-primary/5 dark:hover:bg-primary/10 rounded-lg cursor-pointer transition-colors"
+              >
+                <AddIcon sx={{ fontSize: 16 }} />
+                Nový canvas
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  )
+}
+
+export default function CanvasToolbar({ collapsed, onValidate, onFollowUp, onExport }) {
+  const { activeCanvas, canvases, createCanvas, setActiveCanvas, updateCanvasName, isEmpty, score, setScoreData, validation } = useCanvas()
   const { t } = useTranslation()
   const [editingName, setEditingName] = useState(false)
   const [scoringLoading, setScoringLoading] = useState(false)
@@ -91,12 +125,10 @@ export default function CanvasToolbar({ onGenerate, onValidate, onFollowUp, onEx
         }
       }
 
-      // Parse the JSON response
       try {
         const scoreObj = JSON.parse(fullText)
         setScoreData(scoreObj)
       } catch {
-        // Try extracting JSON from text
         const match = fullText.match(/\{[\s\S]*\}/)
         if (match) {
           setScoreData(JSON.parse(match[0]))
@@ -107,132 +139,103 @@ export default function CanvasToolbar({ onGenerate, onValidate, onFollowUp, onEx
     }
   }, [activeCanvas, isEmpty, setScoreData])
 
+  // Auto-fetch score when canvas has content but no score
+  useEffect(() => {
+    if (activeCanvas && !isEmpty && !score && !scoringLoading) {
+      fetchScore()
+    }
+  }, [activeCanvas?.id])
+
   if (!activeCanvas) return null
 
+  const hasValidation = !!validation
+
   return (
-    <div className="flex flex-col border-b border-border dark:border-dark-border bg-surface-alt dark:bg-dark-surface-alt">
-      {/* Row 1: Canvas selector + name + actions */}
-      <div className="flex flex-wrap items-center gap-2 sm:gap-3 px-2 sm:px-4 py-2 sm:py-3">
-        {/* Canvas selector */}
-        <div className="flex items-center gap-2 w-full sm:w-auto">
-          <select
-            value={activeCanvas.id}
-            onChange={e => setActiveCanvas(e.target.value)}
-            className="text-sm bg-white dark:bg-dark-surface border border-border dark:border-dark-border rounded-lg px-2 sm:px-3 py-1.5 text-text dark:text-dark-text cursor-pointer flex-1 sm:flex-none sm:max-w-none truncate"
+    <div className="flex flex-col border-b border-border dark:border-dark-border bg-surface-alt dark:bg-dark-surface-alt overflow-hidden">
+      {/* Row 1: Canvas selector + name (collapsible) */}
+      <AnimatePresence initial={false}>
+        {!collapsed && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="overflow-hidden"
           >
-            {canvases.map(c => (
-              <option key={c.id} value={c.id}>{c.name}</option>
-            ))}
-          </select>
-
-          <button
-            onClick={() => createCanvas()}
-            className="p-1.5 rounded-lg hover:bg-surface-hover dark:hover:bg-dark-surface-hover text-text-secondary dark:text-dark-text-secondary cursor-pointer"
-            title={t('toolbar.new')}
-          >
-            <AddIcon fontSize="small" />
-          </button>
-
-          {canvases.length > 1 && (
-            <button
-              onClick={() => {
-                if (confirm(t('toolbar.deleteConfirm'))) deleteCanvas(activeCanvas.id)
-              }}
-              className="p-1.5 rounded-lg hover:bg-red-50 dark:hover:bg-red-900/20 text-red-500 cursor-pointer"
-              title={t('toolbar.delete')}
-            >
-              <DeleteOutlineIcon fontSize="small" />
-            </button>
-          )}
-        </div>
-
-        {/* Canvas name + author (desktop) */}
-        <div className="flex-1 min-w-0 hidden sm:flex sm:items-center sm:gap-3">
-          {editingName ? (
-            <input
-              autoFocus
-              className="text-sm font-medium bg-white dark:bg-dark-surface border border-primary rounded-lg px-3 py-1.5 text-text dark:text-dark-text w-full max-w-xs"
-              value={activeCanvas.name}
-              onChange={e => updateCanvasName(e.target.value)}
-              onBlur={() => setEditingName(false)}
-              onKeyDown={e => e.key === 'Enter' && setEditingName(false)}
-            />
-          ) : (
-            <button
-              onClick={() => setEditingName(true)}
-              className="text-sm font-medium text-text dark:text-dark-text hover:text-primary transition-colors cursor-pointer truncate max-w-xs block"
-            >
-              {activeCanvas.name}
-            </button>
-          )}
-          {activeCanvas.author && (
-            <span className="flex items-center gap-1 text-xs text-text-secondary dark:text-dark-text-secondary bg-white dark:bg-dark-surface border border-border dark:border-dark-border rounded-full px-2.5 py-1 flex-shrink-0">
-              <PersonIcon sx={{ fontSize: 14 }} />
-              {activeCanvas.author}
-            </span>
-          )}
-        </div>
-
-        {/* Score + Progress (desktop) */}
-        <div className="hidden sm:flex items-center gap-3">
-          {!isEmpty && (
-            <ScoreBadge score={score} isLoading={scoringLoading} onClick={fetchScore} />
-          )}
-          <div className="flex items-center gap-2 text-xs text-text-secondary dark:text-dark-text-secondary">
-            <div className="w-20 h-1.5 bg-border dark:bg-dark-border rounded-full overflow-hidden">
-              <div
-                className="h-full bg-primary rounded-full transition-all duration-300"
-                style={{ width: `${(filledCount / 9) * 100}%` }}
+            <div className="flex flex-wrap items-center gap-2 sm:gap-3 px-2 sm:px-4 pt-2 sm:pt-3">
+              {/* Custom canvas dropdown */}
+              <CanvasDropdown
+                canvases={canvases}
+                activeId={activeCanvas.id}
+                onChange={setActiveCanvas}
+                onCreate={() => createCanvas()}
               />
+
+              {/* Canvas name (editable, bigger font) */}
+              <div className="flex-1 min-w-0 hidden sm:flex sm:items-center">
+                {editingName ? (
+                  <input
+                    autoFocus
+                    className="text-lg font-semibold bg-white dark:bg-dark-surface border border-primary rounded-lg px-3 py-1.5 text-text dark:text-dark-text w-full max-w-sm"
+                    style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}
+                    value={activeCanvas.name}
+                    onChange={e => updateCanvasName(e.target.value)}
+                    onBlur={() => setEditingName(false)}
+                    onKeyDown={e => e.key === 'Enter' && setEditingName(false)}
+                  />
+                ) : (
+                  <button
+                    onClick={() => setEditingName(true)}
+                    className="text-lg font-semibold text-text dark:text-dark-text hover:text-primary transition-colors cursor-pointer truncate max-w-sm block"
+                    style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}
+                  >
+                    {activeCanvas.name}
+                  </button>
+                )}
+              </div>
             </div>
-            <span>{filledCount}/9</span>
-          </div>
-        </div>
-
-        {/* Actions */}
-        <div className="flex items-center gap-1 sm:gap-2">
-          <Button variant={isEmpty ? 'primary' : 'secondary'} size="sm" onClick={onGenerate}>
-            <AutoFixHighIcon sx={{ fontSize: 16 }} />
-            {t('toolbar.generate')}
-          </Button>
-
-          <Button variant={isEmpty ? 'secondary' : 'primary'} size="sm" onClick={onValidate} disabled={isEmpty}>
-            <FactCheckIcon sx={{ fontSize: 16 }} />
-            {t('toolbar.validate')}
-          </Button>
-
-          <Button variant="secondary" size="sm" onClick={onFollowUp} disabled={isEmpty}>
-            <RocketLaunchIcon sx={{ fontSize: 16 }} />
-            {t('toolbar.followup')}
-          </Button>
-
-          <Button variant="secondary" size="sm" onClick={onExport} disabled={isEmpty}>
-            <PictureAsPdfIcon sx={{ fontSize: 16 }} />
-            PDF
-          </Button>
-        </div>
-      </div>
-
-      {/* Row 2: Mobile-only progress + score + author */}
-      <div className="flex sm:hidden items-center gap-3 px-2 pb-2">
-        {activeCanvas.author && (
-          <span className="flex items-center gap-1 text-xs text-text-secondary dark:text-dark-text-secondary">
-            <PersonIcon sx={{ fontSize: 14 }} />
-            {activeCanvas.author}
-          </span>
+          </motion.div>
         )}
-        {!isEmpty && (
-          <ScoreBadge score={score} isLoading={scoringLoading} onClick={fetchScore} />
-        )}
-        <div className="flex items-center gap-2 text-xs text-text-secondary dark:text-dark-text-secondary ml-auto">
-          <div className="w-16 h-1.5 bg-border dark:bg-dark-border rounded-full overflow-hidden">
-            <div
-              className="h-full bg-primary rounded-full transition-all duration-300"
-              style={{ width: `${(filledCount / 9) * 100}%` }}
-            />
-          </div>
-          <span>{filledCount}/9</span>
+      </AnimatePresence>
+
+      {/* Row 2: Score + Validate + Actions (always visible) */}
+      <div className="flex items-center gap-2 sm:gap-3 px-2 sm:px-4 py-2 sm:py-3">
+        {/* Score + Validate group */}
+        <div className="flex items-center gap-2 sm:gap-3">
+          {!isEmpty && (
+            <button
+              onClick={fetchScore}
+              className="cursor-pointer hover:opacity-70 transition-opacity"
+              title={score?.summary || t('ai.scoring')}
+            >
+              <InlineScore score={score} isLoading={scoringLoading} />
+            </button>
+          )}
+          <Button
+            variant={isEmpty ? 'secondary' : 'primary'}
+            size="md"
+            onClick={onValidate}
+            disabled={isEmpty}
+          >
+            <FactCheckIcon sx={{ fontSize: 18 }} />
+            {hasValidation ? t('toolbar.validation') : t('toolbar.validate')}
+          </Button>
         </div>
+
+        {/* Spacer */}
+        <div className="flex-1" />
+
+        {/* PDF (subtle) */}
+        <Button variant="ghost" size="sm" onClick={onExport} disabled={isEmpty}>
+          <PictureAsPdfIcon sx={{ fontSize: 16 }} />
+          <span className="hidden sm:inline">PDF</span>
+        </Button>
+
+        {/* Follow-up (bigger, prominent) */}
+        <Button variant="primary" size="md" onClick={onFollowUp} disabled={isEmpty}>
+          <RocketLaunchIcon sx={{ fontSize: 18 }} />
+          {t('toolbar.followup')}
+        </Button>
       </div>
     </div>
   )
