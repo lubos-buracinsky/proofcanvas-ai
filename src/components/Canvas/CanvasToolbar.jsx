@@ -55,16 +55,16 @@ function CanvasDropdown({ canvases, activeId, onChange, onCreate }) {
 
   return (
     <>
-      <div className="relative" ref={ref}>
+      <div className="relative min-w-0 max-w-[50vw] sm:max-w-xs md:max-w-md" ref={ref}>
         <button
           onClick={handleToggle}
-          className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-border dark:border-dark-border bg-white dark:bg-dark-surface hover:bg-surface-hover dark:hover:bg-dark-surface-hover transition-colors cursor-pointer min-w-0"
+          className="flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-1.5 rounded-lg border border-border dark:border-dark-border bg-white dark:bg-dark-surface hover:bg-surface-hover dark:hover:bg-dark-surface-hover transition-colors cursor-pointer w-full text-left"
         >
-          <span className="text-sm sm:text-base font-semibold text-text dark:text-dark-text" style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}>
-            {active?.name || '—'}
-            {active?.author && <span className="text-text-secondary dark:text-dark-text-secondary ml-1 text-xs sm:text-sm">({active.author})</span>}
+          <span className="flex items-center min-w-0 text-sm sm:text-base font-semibold text-text dark:text-dark-text" style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}>
+            <span className="truncate block">{active?.name || '—'}</span>
+            {active?.author && <span className="text-text-secondary dark:text-dark-text-secondary ml-1 text-xs sm:text-sm flex-shrink-0">({active.author})</span>}
           </span>
-          <KeyboardArrowDownIcon sx={{ fontSize: 18 }} className={`text-text-secondary dark:text-dark-text-secondary transition-transform flex-shrink-0 ${open ? 'rotate-180' : ''}`} />
+          <KeyboardArrowDownIcon sx={{ fontSize: 18 }} className={`text-text-secondary dark:text-dark-text-secondary transition-transform flex-shrink-0 ml-auto ${open ? 'rotate-180' : ''}`} />
         </button>
       </div>
 
