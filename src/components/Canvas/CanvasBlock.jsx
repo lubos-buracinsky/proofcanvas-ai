@@ -184,7 +184,7 @@ export default function CanvasBlock({ block, value, subsectionValue, onChange, i
               <block.icon sx={{ fontSize: 18 }} className="text-text-secondary dark:text-dark-text-secondary flex-shrink-0 opacity-60" />
             )}
             <div className="min-w-0">
-              <h3 className="text-sm font-bold uppercase tracking-wide text-text dark:text-dark-text truncate leading-tight">
+              <h3 className="text-xs font-bold uppercase tracking-wide text-text dark:text-dark-text leading-tight">
                 {t(`block.${block.id}`)}
               </h3>
               <p className="text-[11px] text-text-secondary dark:text-dark-text-secondary mt-0.5 line-clamp-1">
