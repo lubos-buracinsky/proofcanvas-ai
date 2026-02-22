@@ -37,7 +37,7 @@ export default function Layout() {
     const onScroll = () => {
       const y = el.scrollTop
       const delta = y - lastScrollY.current
-      if (delta > 8 && y > 60) setToolbarHidden(true)
+      if (delta > 8 && y > 20) setToolbarHidden(true)
       else if (delta < -8) setToolbarHidden(false)
       lastScrollY.current = y
     }
@@ -48,7 +48,7 @@ export default function Layout() {
   return (
     <div className="h-[100dvh] flex flex-col bg-surface dark:bg-dark-surface overflow-hidden">
       {/* Header */}
-      <header className="flex items-center justify-between px-3 md:px-6 py-3 border-b border-border dark:border-dark-border bg-white/80 dark:bg-dark-surface-alt/80 backdrop-blur-md sticky top-0 z-40 transition-colors">
+      <header className="flex flex-wrap items-center justify-between gap-y-2 px-3 md:px-6 py-2 sm:py-3 border-b border-border dark:border-dark-border bg-white/80 dark:bg-dark-surface-alt/80 backdrop-blur-md sticky top-0 z-40 transition-colors">
         <div className="flex items-center gap-2 md:gap-3">
           <div className="p-1.5 md:p-2 bg-primary/10 rounded-lg">
             <GridViewIcon className="text-primary text-xl md:text-2xl" />
