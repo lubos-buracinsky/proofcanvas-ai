@@ -176,6 +176,7 @@ export default function CanvasToolbar({ onValidate, onFollowUp, onExport }) {
   return (
     <div className="border-b border-border dark:border-dark-border bg-surface-alt dark:bg-dark-surface-alt">
       <div className="flex flex-wrap items-center gap-2 sm:gap-3 px-2 sm:px-4 py-2 sm:py-3">
+        {/* Top row elements (always visible on top) */}
         <CanvasDropdown
           canvases={canvases}
           activeId={activeCanvas.id}
@@ -193,29 +194,32 @@ export default function CanvasToolbar({ onValidate, onFollowUp, onExport }) {
           </button>
         )}
 
-        <Button
-          variant={isEmpty ? 'secondary' : 'dark'}
-          size="md"
-          onClick={onValidate}
-          disabled={isEmpty}
-          className="!text-xs sm:!text-sm !px-2 sm:!px-4"
-        >
-          <FactCheckIcon sx={{ fontSize: 16 }} className="sm:!text-[18px]" />
-          {hasValidation ? t('toolbar.validation') : t('toolbar.validate')}
-        </Button>
+        {/* Spacer that pushes action buttons to the right on desktop, or forces break on mobile */}
+        <div className="flex-1 min-w-0 sm:min-w-[auto]" />
 
-        {/* Spacer */}
-        <div className="flex-1" />
+        {/* Action buttons (wrap to new line on mobile) */}
+        <div className="flex items-center gap-2 w-full sm:w-auto justify-end mt-1 sm:mt-0">
+          <Button
+            variant={isEmpty ? 'secondary' : 'dark'}
+            size="md"
+            onClick={onValidate}
+            disabled={isEmpty}
+            className="!text-xs sm:!text-sm !px-2 sm:!px-4 flex-1 sm:flex-none"
+          >
+            <FactCheckIcon sx={{ fontSize: 16 }} className="sm:!text-[18px]" />
+            {hasValidation ? t('toolbar.validation') : t('toolbar.validate')}
+          </Button>
 
-        <Button variant="dark" size="md" onClick={onFollowUp} disabled={isEmpty} className="!text-xs sm:!text-sm !px-2 sm:!px-4">
-          <RocketLaunchIcon sx={{ fontSize: 16 }} className="sm:!text-[18px]" />
-          {t('toolbar.followup')}
-        </Button>
+          <Button variant="dark" size="md" onClick={onFollowUp} disabled={isEmpty} className="!text-xs sm:!text-sm !px-2 sm:!px-4 flex-1 sm:flex-none">
+            <RocketLaunchIcon sx={{ fontSize: 16 }} className="sm:!text-[18px]" />
+            {t('toolbar.followup')}
+          </Button>
 
-        <Button variant="ghost" size="sm" onClick={onExport} disabled={isEmpty}>
-          <PictureAsPdfIcon sx={{ fontSize: 16 }} />
-          <span className="hidden sm:inline">PDF</span>
-        </Button>
+          <Button variant="ghost" size="sm" onClick={onExport} disabled={isEmpty} className="flex-1 sm:flex-none justify-center">
+            <PictureAsPdfIcon sx={{ fontSize: 16 }} />
+            <span className="hidden sm:inline">PDF</span>
+          </Button>
+        </div>
       </div>
     </div>
   )
