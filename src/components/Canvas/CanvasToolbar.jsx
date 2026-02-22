@@ -143,7 +143,7 @@ export default function CanvasToolbar({ onValidate, onFollowUp, onExport }) {
     if (activeCanvas && !isEmpty && !score && !scoringLoading) {
       fetchScore()
     }
-  }, [activeCanvas?.id, isEmpty, score, scoringLoading])
+  }, [activeCanvas?.id, isEmpty])
 
   if (!activeCanvas) return null
 
