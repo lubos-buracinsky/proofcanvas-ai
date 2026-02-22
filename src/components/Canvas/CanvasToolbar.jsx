@@ -42,9 +42,9 @@ function CanvasDropdown({ canvases, activeId, onChange, onCreate }) {
         onClick={() => setOpen(v => !v)}
         className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-border dark:border-dark-border bg-white dark:bg-dark-surface hover:bg-surface-hover dark:hover:bg-dark-surface-hover transition-colors cursor-pointer min-w-0"
       >
-        <span className="text-base font-semibold text-text dark:text-dark-text" style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}>
+        <span className="text-sm sm:text-base font-semibold text-text dark:text-dark-text" style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}>
           {active?.name || '—'}
-          {active?.author && <span className="text-text-secondary dark:text-dark-text-secondary ml-1">({active.author})</span>}
+          {active?.author && <span className="text-text-secondary dark:text-dark-text-secondary ml-1 text-xs sm:text-sm">({active.author})</span>}
         </span>
         <KeyboardArrowDownIcon sx={{ fontSize: 18 }} className={`text-text-secondary dark:text-dark-text-secondary transition-transform flex-shrink-0 ${open ? 'rotate-180' : ''}`} />
       </button>
@@ -150,9 +150,8 @@ export default function CanvasToolbar({ onValidate, onFollowUp, onExport }) {
   const hasValidation = !!validation
 
   return (
-    <div className="flex flex-col border-b border-border dark:border-dark-border bg-surface-alt dark:bg-dark-surface-alt">
-      {/* Single row: Dropdown + Score + Validate ... spacer ... Follow-up + PDF */}
-      <div className="flex items-center gap-2 sm:gap-3 px-2 sm:px-4 py-2 sm:py-3">
+    <div className="border-b border-border dark:border-dark-border bg-surface-alt dark:bg-dark-surface-alt">
+      <div className="flex flex-wrap items-center gap-2 sm:gap-3 px-2 sm:px-4 py-2 sm:py-3">
         <CanvasDropdown
           canvases={canvases}
           activeId={activeCanvas.id}
@@ -175,16 +174,17 @@ export default function CanvasToolbar({ onValidate, onFollowUp, onExport }) {
           size="md"
           onClick={onValidate}
           disabled={isEmpty}
+          className="!text-xs sm:!text-sm !px-2 sm:!px-4"
         >
-          <FactCheckIcon sx={{ fontSize: 18 }} />
+          <FactCheckIcon sx={{ fontSize: 16 }} className="sm:!text-[18px]" />
           {hasValidation ? t('toolbar.validation') : t('toolbar.validate')}
         </Button>
 
         {/* Spacer */}
         <div className="flex-1" />
 
-        <Button variant="dark" size="md" onClick={onFollowUp} disabled={isEmpty}>
-          <RocketLaunchIcon sx={{ fontSize: 18 }} />
+        <Button variant="dark" size="md" onClick={onFollowUp} disabled={isEmpty} className="!text-xs sm:!text-sm !px-2 sm:!px-4">
+          <RocketLaunchIcon sx={{ fontSize: 16 }} className="sm:!text-[18px]" />
           {t('toolbar.followup')}
         </Button>
 

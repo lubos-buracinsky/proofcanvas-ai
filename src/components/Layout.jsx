@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback } from 'react'
+import { useState, useRef, useCallback, useEffect } from 'react'
 import GridViewIcon from '@mui/icons-material/GridView'
 import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh'
 import ThemeToggle from './Common/ThemeToggle'
@@ -19,13 +19,30 @@ export default function Layout() {
   const [showGenerate, setShowGenerate] = useState(false)
   const [showValidation, setShowValidation] = useState(false)
   const [showFollowUp, setShowFollowUp] = useState(false)
+  const [toolbarHidden, setToolbarHidden] = useState(false)
   const canvasRef = useRef(null)
+  const mainRef = useRef(null)
+  const lastScrollY = useRef(0)
 
   const handleExport = useCallback(() => {
     if (canvasRef.current && activeCanvas) {
       exportCanvasPdf(canvasRef, activeCanvas.name)
     }
   }, [activeCanvas])
+
+  useEffect(() => {
+    const el = mainRef.current
+    if (!el) return
+    const onScroll = () => {
+      const y = el.scrollTop
+      const delta = y - lastScrollY.current
+      if (delta > 8 && y > 60) setToolbarHidden(true)
+      else if (delta < -8) setToolbarHidden(false)
+      lastScrollY.current = y
+    }
+    el.addEventListener('scroll', onScroll, { passive: true })
+    return () => el.removeEventListener('scroll', onScroll)
+  }, [])
 
   return (
     <div className="h-screen flex flex-col bg-surface dark:bg-dark-surface">
@@ -47,8 +64,11 @@ export default function Layout() {
         </div>
       </header>
 
-      {/* Sticky Toolbar */}
-      <div className="sticky top-0 z-30">
+      {/* Toolbar - slides away on scroll down */}
+      <div
+        className="sticky top-0 z-30 transition-transform duration-300"
+        style={{ transform: toolbarHidden ? 'translateY(-100%)' : 'translateY(0)' }}
+      >
         <CanvasToolbar
           onValidate={() => setShowValidation(true)}
           onFollowUp={() => setShowFollowUp(true)}
@@ -57,7 +77,7 @@ export default function Layout() {
       </div>
 
       {/* Main content */}
-      <main className="flex-1 overflow-auto">
+      <main ref={mainRef} className="flex-1 overflow-auto">
         <CanvasBoard ref={canvasRef} />
       </main>
 
