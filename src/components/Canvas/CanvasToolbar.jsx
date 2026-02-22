@@ -55,7 +55,7 @@ function CanvasDropdown({ canvases, activeId, onChange, onCreate }) {
 
   return (
     <>
-      <div className="relative min-w-0 max-w-[50vw] sm:max-w-xs md:max-w-md" ref={ref}>
+      <div className="relative min-w-0 flex-1 sm:flex-none sm:max-w-xs md:max-w-md" ref={ref}>
         <button
           onClick={handleToggle}
           className="flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-1.5 rounded-lg border border-border dark:border-dark-border bg-white dark:bg-dark-surface hover:bg-surface-hover dark:hover:bg-dark-surface-hover transition-colors cursor-pointer w-full text-left"
