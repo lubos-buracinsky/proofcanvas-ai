@@ -195,7 +195,7 @@ export default function CanvasToolbar({ onValidate, onFollowUp, onExport }) {
         )}
 
         {/* Spacer that pushes action buttons to the right on desktop, or forces break on mobile */}
-        <div className="flex-1 min-w-0 sm:min-w-[auto]" />
+        <div className="hidden sm:block flex-1 min-w-0 sm:min-w-[auto]" />
 
         {/* Action buttons (wrap to new line on mobile) */}
         <div className="flex items-center gap-2 w-full sm:w-auto justify-end mt-1 sm:mt-0">
