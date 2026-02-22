@@ -5,6 +5,7 @@ const variants = {
   secondary: 'bg-white dark:bg-dark-surface-alt text-text dark:text-dark-text border border-border dark:border-dark-border hover:bg-surface-hover dark:hover:bg-dark-surface-hover',
   ghost: 'text-text-secondary dark:text-dark-text-secondary hover:bg-surface-hover dark:hover:bg-dark-surface-hover',
   danger: 'bg-red-500 text-white hover:bg-red-600',
+  dark: 'bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 hover:bg-black dark:hover:bg-white shadow-sm',
 }
 
 const sizes = {

@@ -40,9 +40,9 @@ function CanvasDropdown({ canvases, activeId, onChange, onCreate }) {
     <div className="relative" ref={ref}>
       <button
         onClick={() => setOpen(v => !v)}
-        className="flex items-center gap-2 px-3 pr-3 py-1.5 rounded-lg border border-border dark:border-dark-border bg-white dark:bg-dark-surface hover:bg-surface-hover dark:hover:bg-dark-surface-hover transition-colors cursor-pointer min-w-0 max-w-[260px]"
+        className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-border dark:border-dark-border bg-white dark:bg-dark-surface hover:bg-surface-hover dark:hover:bg-dark-surface-hover transition-colors cursor-pointer min-w-0 max-w-[260px]"
       >
-        <span className="text-sm text-text dark:text-dark-text truncate">
+        <span className="text-base font-semibold text-text dark:text-dark-text truncate" style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}>
           {active?.name || '—'}
           {active?.author && <span className="text-text-secondary dark:text-dark-text-secondary ml-1">({active.author})</span>}
         </span>
@@ -87,10 +87,9 @@ function CanvasDropdown({ canvases, activeId, onChange, onCreate }) {
   )
 }
 
-export default function CanvasToolbar({ collapsed, onValidate, onFollowUp, onExport }) {
-  const { activeCanvas, canvases, createCanvas, setActiveCanvas, updateCanvasName, isEmpty, score, setScoreData, validation } = useCanvas()
+export default function CanvasToolbar({ onValidate, onFollowUp, onExport }) {
+  const { activeCanvas, canvases, createCanvas, setActiveCanvas, isEmpty, score, setScoreData, validation } = useCanvas()
   const { t } = useTranslation()
-  const [editingName, setEditingName] = useState(false)
   const [scoringLoading, setScoringLoading] = useState(false)
 
   const fetchScore = useCallback(async () => {
@@ -151,90 +150,47 @@ export default function CanvasToolbar({ collapsed, onValidate, onFollowUp, onExp
   const hasValidation = !!validation
 
   return (
-    <div className="flex flex-col border-b border-border dark:border-dark-border bg-surface-alt dark:bg-dark-surface-alt overflow-hidden">
-      {/* Row 1: Canvas selector + name (collapsible) */}
-      <AnimatePresence initial={false}>
-        {!collapsed && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="overflow-hidden"
-          >
-            <div className="flex flex-wrap items-center gap-2 sm:gap-3 px-2 sm:px-4 pt-2 sm:pt-3">
-              {/* Custom canvas dropdown */}
-              <CanvasDropdown
-                canvases={canvases}
-                activeId={activeCanvas.id}
-                onChange={setActiveCanvas}
-                onCreate={() => createCanvas()}
-              />
-
-              {/* Canvas name (editable, bigger font) */}
-              <div className="flex-1 min-w-0 hidden sm:flex sm:items-center">
-                {editingName ? (
-                  <input
-                    autoFocus
-                    className="text-lg font-semibold bg-white dark:bg-dark-surface border border-primary rounded-lg px-3 py-1.5 text-text dark:text-dark-text w-full max-w-sm"
-                    style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}
-                    value={activeCanvas.name}
-                    onChange={e => updateCanvasName(e.target.value)}
-                    onBlur={() => setEditingName(false)}
-                    onKeyDown={e => e.key === 'Enter' && setEditingName(false)}
-                  />
-                ) : (
-                  <button
-                    onClick={() => setEditingName(true)}
-                    className="text-lg font-semibold text-text dark:text-dark-text hover:text-primary transition-colors cursor-pointer truncate max-w-sm block"
-                    style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}
-                  >
-                    {activeCanvas.name}
-                  </button>
-                )}
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Row 2: Score + Validate + Actions (always visible) */}
+    <div className="flex flex-col border-b border-border dark:border-dark-border bg-surface-alt dark:bg-dark-surface-alt">
+      {/* Single row: Dropdown + Score + Validate ... spacer ... Follow-up + PDF */}
       <div className="flex items-center gap-2 sm:gap-3 px-2 sm:px-4 py-2 sm:py-3">
-        {/* Score + Validate group */}
-        <div className="flex items-center gap-2 sm:gap-3">
-          {!isEmpty && (
-            <button
-              onClick={fetchScore}
-              className="cursor-pointer hover:opacity-70 transition-opacity"
-              title={score?.summary || t('ai.scoring')}
-            >
-              <InlineScore score={score} isLoading={scoringLoading} />
-            </button>
-          )}
-          <Button
-            variant={isEmpty ? 'secondary' : 'primary'}
-            size="md"
-            onClick={onValidate}
-            disabled={isEmpty}
+        <CanvasDropdown
+          canvases={canvases}
+          activeId={activeCanvas.id}
+          onChange={setActiveCanvas}
+          onCreate={() => createCanvas()}
+        />
+
+        {!isEmpty && (
+          <button
+            onClick={fetchScore}
+            className="cursor-pointer hover:opacity-70 transition-opacity"
+            title={score?.summary || t('ai.scoring')}
           >
-            <FactCheckIcon sx={{ fontSize: 18 }} />
-            {hasValidation ? t('toolbar.validation') : t('toolbar.validate')}
-          </Button>
-        </div>
+            <InlineScore score={score} isLoading={scoringLoading} />
+          </button>
+        )}
+
+        <Button
+          variant={isEmpty ? 'secondary' : 'dark'}
+          size="md"
+          onClick={onValidate}
+          disabled={isEmpty}
+        >
+          <FactCheckIcon sx={{ fontSize: 18 }} />
+          {hasValidation ? t('toolbar.validation') : t('toolbar.validate')}
+        </Button>
 
         {/* Spacer */}
         <div className="flex-1" />
 
-        {/* PDF (subtle) */}
+        <Button variant="dark" size="md" onClick={onFollowUp} disabled={isEmpty}>
+          <RocketLaunchIcon sx={{ fontSize: 18 }} />
+          {t('toolbar.followup')}
+        </Button>
+
         <Button variant="ghost" size="sm" onClick={onExport} disabled={isEmpty}>
           <PictureAsPdfIcon sx={{ fontSize: 16 }} />
           <span className="hidden sm:inline">PDF</span>
-        </Button>
-
-        {/* Follow-up (bigger, prominent) */}
-        <Button variant="primary" size="md" onClick={onFollowUp} disabled={isEmpty}>
-          <RocketLaunchIcon sx={{ fontSize: 18 }} />
-          {t('toolbar.followup')}
         </Button>
       </div>
     </div>

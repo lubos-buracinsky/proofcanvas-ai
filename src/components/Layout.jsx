@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback, useEffect } from 'react'
+import { useState, useRef, useCallback } from 'react'
 import GridViewIcon from '@mui/icons-material/GridView'
 import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh'
 import ThemeToggle from './Common/ThemeToggle'
@@ -13,38 +13,6 @@ import useCanvas from '../hooks/useCanvas'
 import useTranslation from '../hooks/useTranslation'
 import Button from './Common/Button'
 
-function useScrollDirection() {
-  const [collapsed, setCollapsed] = useState(false)
-
-  useEffect(() => {
-    let lastY = window.scrollY
-    let ticking = false
-
-    const onScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          const currentY = window.scrollY
-          if (currentY <= 10) {
-            setCollapsed(false)
-          } else if (currentY > lastY + 5) {
-            setCollapsed(true)
-          } else if (currentY < lastY - 5) {
-            setCollapsed(false)
-          }
-          lastY = currentY
-          ticking = false
-        })
-        ticking = true
-      }
-    }
-
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
-
-  return collapsed
-}
-
 export default function Layout() {
   const { activeCanvas } = useCanvas()
   const { t } = useTranslation()
@@ -52,7 +20,6 @@ export default function Layout() {
   const [showValidation, setShowValidation] = useState(false)
   const [showFollowUp, setShowFollowUp] = useState(false)
   const canvasRef = useRef(null)
-  const collapsed = useScrollDirection()
 
   const handleExport = useCallback(() => {
     if (canvasRef.current && activeCanvas) {
@@ -71,7 +38,7 @@ export default function Layout() {
           </h1>
         </div>
         <div className="flex items-center gap-2">
-          <Button variant="primary" size="sm" onClick={() => setShowGenerate(true)}>
+          <Button variant="ghost" size="sm" className="btn-rainbow text-white" onClick={() => setShowGenerate(true)}>
             <AutoFixHighIcon sx={{ fontSize: 16 }} />
             {t('toolbar.generateIdea')}
           </Button>
@@ -83,7 +50,6 @@ export default function Layout() {
       {/* Sticky Toolbar */}
       <div className="sticky top-0 z-30">
         <CanvasToolbar
-          collapsed={collapsed}
           onValidate={() => setShowValidation(true)}
           onFollowUp={() => setShowFollowUp(true)}
           onExport={handleExport}

@@ -11,7 +11,7 @@ export default function LangToggle() {
         text-text-secondary dark:text-dark-text-secondary uppercase tracking-wider"
       title={lang === 'cs' ? 'Switch to English' : 'Přepnout na češtinu'}
     >
-      {lang === 'cs' ? 'EN' : 'CZ'}
+      {lang === 'cs' ? 'CZ' : 'EN'}
     </button>
   )
 }

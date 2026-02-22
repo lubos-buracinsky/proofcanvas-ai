@@ -144,6 +144,14 @@ export default function CanvasBlock({ block, value, subsectionValue, onChange, i
   const displaySuggestText = suggestLoading ? suggestStreamText : savedSuggestion
   const hasSuggestions = !!(displaySuggestText || suggestLoading)
 
+  // Auto-fetch block score when canvas loads and block has content
+  useEffect(() => {
+    if (value?.trim() && !blockScore && !blockScoreLoading) {
+      const timer = setTimeout(() => fetchBlockScore(), index * 400)
+      return () => clearTimeout(timer)
+    }
+  }, [activeCanvas?.id])
+
   // Lock body scroll when expanded
   useEffect(() => {
     if (expanded) {
@@ -203,14 +211,6 @@ export default function CanvasBlock({ block, value, subsectionValue, onChange, i
               <AutoAwesomeIcon sx={{ fontSize: 15 }} />
               <span className="text-[10px] font-medium">{t('block.improve')}</span>
             </button>
-            <button
-              onClick={() => setExpanded(true)}
-              className="p-1 rounded-md hover:bg-surface-hover dark:hover:bg-dark-surface-hover
-                transition-colors text-text-secondary dark:text-dark-text-secondary cursor-pointer"
-              title={t('block.expand')}
-            >
-              <FullscreenIcon sx={{ fontSize: 15 }} />
-            </button>
           </div>
         </div>
 
@@ -235,7 +235,10 @@ export default function CanvasBlock({ block, value, subsectionValue, onChange, i
           {value ? (
             <div
               className="px-3 pt-1 text-sm text-text dark:text-dark-text whitespace-pre-wrap overflow-hidden"
-              style={{ display: '-webkit-box', WebkitLineClamp: block.subsection ? 4 : 6, WebkitBoxOrient: 'vertical' }}
+              style={{ display: '-webkit-box', WebkitLineClamp: block.subsection ? 5 : 8, WebkitBoxOrient: 'vertical', cursor: 'pointer' }}
+              onClick={() => setExpanded(true)}
+              role="button"
+              tabIndex={0}
             >
               {value}
             </div>
@@ -280,13 +283,15 @@ export default function CanvasBlock({ block, value, subsectionValue, onChange, i
           </div>
         )}
 
-        {/* Click to expand if has content (subtle indicator) */}
-        {value && (
-          <button
-            onClick={() => setExpanded(true)}
-            className="absolute bottom-0 left-0 right-0 h-6 bg-gradient-to-t from-white dark:from-dark-surface-alt to-transparent cursor-pointer"
-          />
-        )}
+        {/* Expand icon at bottom-right */}
+        <button
+          onClick={() => setExpanded(true)}
+          className="absolute bottom-1 right-1 p-1 rounded-md hover:bg-surface-hover dark:hover:bg-dark-surface-hover
+            transition-colors text-text-secondary/40 hover:text-text-secondary dark:text-dark-text-secondary/40 dark:hover:text-dark-text-secondary cursor-pointer"
+          title={t('block.expand')}
+        >
+          <FullscreenIcon sx={{ fontSize: 16 }} />
+        </button>
       </motion.div>
 
       {/* Expanded overlay */}
