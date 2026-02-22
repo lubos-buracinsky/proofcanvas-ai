@@ -1,4 +1,5 @@
 import { useState, useCallback, useRef, useEffect } from 'react'
+import { createPortal } from 'react-dom'
 import { motion, AnimatePresence } from 'motion/react'
 import AddIcon from '@mui/icons-material/Add'
 import FactCheckIcon from '@mui/icons-material/FactCheck'
@@ -22,8 +23,6 @@ function InlineScore({ score, isLoading }) {
     </span>
   )
 }
-
-import { createPortal } from 'react-dom'
 
 function CanvasDropdown({ canvases, activeId, onChange, onCreate }) {
   const [open, setOpen] = useState(false)
