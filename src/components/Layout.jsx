@@ -3,6 +3,7 @@ import GridViewIcon from '@mui/icons-material/GridView'
 import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh'
 import ThemeToggle from './Common/ThemeToggle'
 import LangToggle from './Common/LangToggle'
+import MobileMenu from './Common/MobileMenu'
 import CanvasToolbar from './Canvas/CanvasToolbar'
 import CanvasBoard from './Canvas/CanvasBoard'
 import AIGenerateModal from './AI/AIGenerateModal'
@@ -45,42 +46,61 @@ export default function Layout() {
   }, [])
 
   return (
-    <div className="h-screen flex flex-col bg-surface dark:bg-dark-surface">
+    <div className="h-[100dvh] flex flex-col bg-surface dark:bg-dark-surface overflow-hidden">
       {/* Header */}
-      <header className="flex items-center justify-between px-3 sm:px-4 py-2 border-b border-border dark:border-dark-border bg-white dark:bg-dark-surface-alt">
-        <div className="flex items-center gap-2">
-          <GridViewIcon className="text-primary" />
-          <h1 className="text-base sm:text-lg font-bold text-text dark:text-dark-text">
+      <header className="flex items-center justify-between px-3 md:px-6 py-3 border-b border-border dark:border-dark-border bg-white/80 dark:bg-dark-surface-alt/80 backdrop-blur-md sticky top-0 z-40 transition-colors">
+        <div className="flex items-center gap-2 md:gap-3">
+          <div className="p-1.5 md:p-2 bg-primary/10 rounded-lg">
+            <GridViewIcon className="text-primary text-xl md:text-2xl" />
+          </div>
+          <h1 className="text-base md:text-xl font-bold text-text dark:text-dark-text tracking-tight">
             Lean Canvas <span className="text-primary">AI</span>
           </h1>
         </div>
-        <div className="flex items-center gap-2">
-          <Button variant="ghost" size="sm" className="btn-rainbow text-white" onClick={() => setShowGenerate(true)}>
-            <AutoFixHighIcon sx={{ fontSize: 16 }} />
-            {t('toolbar.generateIdea')}
+
+        <div className="flex items-center gap-2 md:gap-4">
+          <Button variant="ghost" size="sm" className="btn-rainbow text-white shadow-md hover:shadow-lg transition-shadow" onClick={() => setShowGenerate(true)}>
+            <AutoFixHighIcon sx={{ fontSize: 18 }} />
+            <span className="hidden sm:inline font-medium">{t('toolbar.generateIdea')}</span>
+            <span className="sm:hidden font-medium">Idea</span>
           </Button>
-          <LangToggle />
-          <ThemeToggle />
+
+          {/* Desktop Controls */}
+          <div className="hidden md:flex items-center gap-2 border-l border-border dark:border-dark-border pl-4 ml-2">
+            <LangToggle />
+            <ThemeToggle />
+          </div>
+
+          {/* Mobile Menu */}
+          <MobileMenu />
         </div>
       </header>
 
-      {/* Toolbar - collapses on scroll down */}
-      <div className="sticky top-0 z-30">
+      {/* Toolbar - collapses on scroll down relative to content layout*/}
+      <div className="relative z-30 shadow-sm dark:shadow-none">
         <div
-          className="transition-all duration-300 overflow-hidden"
-          style={{ maxHeight: toolbarHidden ? 0 : 200 }}
+          className="transition-all duration-300 ease-in-out overflow-hidden transform-gpu"
+          style={{
+            maxHeight: toolbarHidden ? 0 : 250,
+            opacity: toolbarHidden ? 0 : 1,
+            transform: `translateY(${toolbarHidden ? '-10px' : '0'})`
+          }}
         >
-          <CanvasToolbar
-            onValidate={() => setShowValidation(true)}
-            onFollowUp={() => setShowFollowUp(true)}
-            onExport={handleExport}
-          />
+          <div className="px-2 md:px-6 py-2">
+            <CanvasToolbar
+              onValidate={() => setShowValidation(true)}
+              onFollowUp={() => setShowFollowUp(true)}
+              onExport={handleExport}
+            />
+          </div>
         </div>
       </div>
 
       {/* Main content */}
-      <main ref={mainRef} className="flex-1 overflow-auto">
-        <CanvasBoard ref={canvasRef} />
+      <main ref={mainRef} className="flex-1 overflow-x-hidden overflow-y-auto scroll-smooth">
+        <div className="w-full max-w-[1600px] mx-auto pb-8">
+          <CanvasBoard ref={canvasRef} />
+        </div>
       </main>
 
       {/* Modals */}

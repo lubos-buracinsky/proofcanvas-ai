@@ -23,67 +23,92 @@ function InlineScore({ score, isLoading }) {
   )
 }
 
+import { createPortal } from 'react-dom'
+
 function CanvasDropdown({ canvases, activeId, onChange, onCreate }) {
   const [open, setOpen] = useState(false)
   const ref = useRef(null)
+  const menuRef = useRef(null)
+  const [coords, setCoords] = useState({ top: 0, left: 0 })
   const active = canvases.find(c => c.id === activeId)
 
   useEffect(() => {
     const handler = (e) => {
-      if (ref.current && !ref.current.contains(e.target)) setOpen(false)
+      if (ref.current?.contains(e.target) || menuRef.current?.contains(e.target)) {
+        return
+      }
+      setOpen(false)
     }
     document.addEventListener('mousedown', handler)
     return () => document.removeEventListener('mousedown', handler)
   }, [])
 
-  return (
-    <div className="relative" ref={ref}>
-      <button
-        onClick={() => setOpen(v => !v)}
-        className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-border dark:border-dark-border bg-white dark:bg-dark-surface hover:bg-surface-hover dark:hover:bg-dark-surface-hover transition-colors cursor-pointer min-w-0"
-      >
-        <span className="text-sm sm:text-base font-semibold text-text dark:text-dark-text" style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}>
-          {active?.name || '—'}
-          {active?.author && <span className="text-text-secondary dark:text-dark-text-secondary ml-1 text-xs sm:text-sm">({active.author})</span>}
-        </span>
-        <KeyboardArrowDownIcon sx={{ fontSize: 18 }} className={`text-text-secondary dark:text-dark-text-secondary transition-transform flex-shrink-0 ${open ? 'rotate-180' : ''}`} />
-      </button>
+  const handleToggle = () => {
+    if (!open && ref.current) {
+      const rect = ref.current.getBoundingClientRect()
+      setCoords({
+        top: rect.bottom + window.scrollY + 4,
+        left: rect.left + window.scrollX
+      })
+    }
+    setOpen(v => !v)
+  }
 
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ opacity: 0, y: -4 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -4 }}
-            transition={{ duration: 0.15 }}
-            className="absolute top-full left-0 mt-1 min-w-[240px] max-w-[320px] bg-white dark:bg-dark-surface-alt border border-border dark:border-dark-border rounded-xl shadow-lg z-50 overflow-hidden"
-          >
-            <div className="max-h-64 overflow-y-auto py-1">
-              {canvases.map(c => (
+  return (
+    <>
+      <div className="relative" ref={ref}>
+        <button
+          onClick={handleToggle}
+          className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-border dark:border-dark-border bg-white dark:bg-dark-surface hover:bg-surface-hover dark:hover:bg-dark-surface-hover transition-colors cursor-pointer min-w-0"
+        >
+          <span className="text-sm sm:text-base font-semibold text-text dark:text-dark-text" style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}>
+            {active?.name || '—'}
+            {active?.author && <span className="text-text-secondary dark:text-dark-text-secondary ml-1 text-xs sm:text-sm">({active.author})</span>}
+          </span>
+          <KeyboardArrowDownIcon sx={{ fontSize: 18 }} className={`text-text-secondary dark:text-dark-text-secondary transition-transform flex-shrink-0 ${open ? 'rotate-180' : ''}`} />
+        </button>
+      </div>
+
+      {typeof document !== 'undefined' && createPortal(
+        <AnimatePresence>
+          {open && (
+            <motion.div
+              ref={menuRef}
+              style={{ position: 'absolute', top: coords.top, left: coords.left }}
+              initial={{ opacity: 0, y: -4 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -4 }}
+              transition={{ duration: 0.15 }}
+              className="min-w-[240px] max-w-[320px] bg-white dark:bg-dark-surface-alt border border-border dark:border-dark-border rounded-xl shadow-lg z-[9999] overflow-hidden"
+            >
+              <div className="max-h-64 overflow-y-auto py-1">
+                {canvases.map(c => (
+                  <button
+                    key={c.id}
+                    onClick={() => { onChange(c.id); setOpen(false) }}
+                    className={`w-full text-left px-3 py-2 text-sm transition-colors cursor-pointer hover:bg-surface-hover dark:hover:bg-dark-surface-hover
+                      ${c.id === activeId ? 'bg-primary/5 dark:bg-primary/10 text-primary font-medium' : 'text-text dark:text-dark-text'}`}
+                  >
+                    {c.name}
+                    {c.author && <span className="text-text-secondary dark:text-dark-text-secondary ml-1 text-xs">({c.author})</span>}
+                  </button>
+                ))}
+              </div>
+              <div className="border-t border-border dark:border-dark-border p-1">
                 <button
-                  key={c.id}
-                  onClick={() => { onChange(c.id); setOpen(false) }}
-                  className={`w-full text-left px-3 py-2 text-sm transition-colors cursor-pointer hover:bg-surface-hover dark:hover:bg-dark-surface-hover
-                    ${c.id === activeId ? 'bg-primary/5 dark:bg-primary/10 text-primary font-medium' : 'text-text dark:text-dark-text'}`}
+                  onClick={() => { onCreate(); setOpen(false) }}
+                  className="w-full flex items-center gap-2 px-3 py-2 text-sm text-primary hover:bg-primary/5 dark:hover:bg-primary/10 rounded-lg cursor-pointer transition-colors"
                 >
-                  {c.name}
-                  {c.author && <span className="text-text-secondary dark:text-dark-text-secondary ml-1 text-xs">({c.author})</span>}
+                  <AddIcon sx={{ fontSize: 16 }} />
+                  Nový canvas
                 </button>
-              ))}
-            </div>
-            <div className="border-t border-border dark:border-dark-border p-1">
-              <button
-                onClick={() => { onCreate(); setOpen(false) }}
-                className="w-full flex items-center gap-2 px-3 py-2 text-sm text-primary hover:bg-primary/5 dark:hover:bg-primary/10 rounded-lg cursor-pointer transition-colors"
-              >
-                <AddIcon sx={{ fontSize: 16 }} />
-                Nový canvas
-              </button>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
+    </>
   )
 }
 
@@ -119,7 +144,7 @@ export default function CanvasToolbar({ onValidate, onFollowUp, onExport }) {
             try {
               const parsed = JSON.parse(data)
               if (parsed.text) fullText += parsed.text
-            } catch {}
+            } catch { }
           }
         }
       }
@@ -133,7 +158,7 @@ export default function CanvasToolbar({ onValidate, onFollowUp, onExport }) {
           setScoreData(JSON.parse(match[0]))
         }
       }
-    } catch {} finally {
+    } catch { } finally {
       setScoringLoading(false)
     }
   }, [activeCanvas, isEmpty, setScoreData])
