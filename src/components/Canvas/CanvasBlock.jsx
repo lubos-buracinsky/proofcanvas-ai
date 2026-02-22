@@ -150,7 +150,7 @@ export default function CanvasBlock({ block, value, subsectionValue, onChange, i
       const timer = setTimeout(() => fetchBlockScore(), index * 400)
       return () => clearTimeout(timer)
     }
-  }, [activeCanvas?.id])
+  }, [activeCanvas?.id, value, blockScore, blockScoreLoading])
 
   // Lock body scroll when expanded
   useEffect(() => {
