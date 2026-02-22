@@ -5,7 +5,7 @@ import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh'
 import FactCheckIcon from '@mui/icons-material/FactCheck'
 import RocketLaunchIcon from '@mui/icons-material/RocketLaunch'
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf'
-import ChatIcon from '@mui/icons-material/Chat'
+import PersonIcon from '@mui/icons-material/Person'
 import useCanvas from '../../hooks/useCanvas'
 import useTranslation from '../../hooks/useTranslation'
 import Button from '../Common/Button'
@@ -52,8 +52,8 @@ export default function CanvasToolbar({ onGenerate, onValidate, onFollowUp, onEx
         )}
       </div>
 
-      {/* Canvas name */}
-      <div className="flex-1 min-w-0 hidden sm:block">
+      {/* Canvas name + author */}
+      <div className="flex-1 min-w-0 hidden sm:flex sm:items-center sm:gap-3">
         {editingName ? (
           <input
             autoFocus
@@ -70,6 +70,12 @@ export default function CanvasToolbar({ onGenerate, onValidate, onFollowUp, onEx
           >
             {activeCanvas.name}
           </button>
+        )}
+        {activeCanvas.author && (
+          <span className="flex items-center gap-1 text-xs text-text-secondary dark:text-dark-text-secondary bg-white dark:bg-dark-surface border border-border dark:border-dark-border rounded-full px-2.5 py-1 flex-shrink-0">
+            <PersonIcon sx={{ fontSize: 14 }} />
+            {activeCanvas.author}
+          </span>
         )}
       </div>
 
@@ -106,9 +112,7 @@ export default function CanvasToolbar({ onGenerate, onValidate, onFollowUp, onEx
           <span className="hidden lg:inline">PDF</span>
         </Button>
 
-        <Button variant="ghost" size="sm" onClick={onToggleChat}>
-          <ChatIcon sx={{ fontSize: 16 }} />
-        </Button>
+        {/* Chat button hidden for now */}
       </div>
     </div>
   )

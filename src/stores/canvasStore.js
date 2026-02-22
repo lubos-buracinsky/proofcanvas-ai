@@ -5,6 +5,7 @@ import { createEmptyCanvas } from '../utils/canvasHelpers'
 const DEMO_CANVASES = [
   {
     name: 'Online kurzy vegetariánského vaření',
+    author: 'David',
     blocks: {
       'problem': '• Nedostatek kvalitních online kurzů vegetariánského vaření\n• Existující obsah není dostatečně vizuální a praktický\n• Lidé chtějí jíst zdravěji, ale nevědí jak na to s rostlinnými surovinami',
       'solution': '• Vizuální online kurzy vaření – krátké formáty s obrazy, krátkými klipy a recepty\n• Živé vaření (live cooking sessions) pro interaktivní učení\n• Dvě formy: rychlé vizuální recepty + hloubkové kurzy s výkladem',
@@ -19,6 +20,7 @@ const DEMO_CANVASES = [
   },
   {
     name: 'AI katastr pro realitní makléře',
+    author: 'Lukáš',
     blocks: {
       'problem': '• Špatné UX katastru nemovitostí\n• Chybějící funkce (sousední parcely, věcná břemena, plomby)\n• Těžkopádné vyhledávání a vyhodnocování kvality pozemků',
       'existing-alternatives': '• Web katastru nemovitostí\n• Mapy.cz\n• Cenová mapa\n• e-katastr (nefunkční)\n• PZMK (mladý startup)',
@@ -35,6 +37,7 @@ const DEMO_CANVASES = [
   },
   {
     name: 'Biofeedback na zvládání stresu',
+    author: 'Honza',
     blocks: {
       'problem': '• Lidé trpí stresem, úzkostmi a ADHD\n• Nejsou schopni regulovat svůj nervový systém (autoregulace parasympatiku)',
       'existing-alternatives': '• HRV wearables (hodinky, prsteny) – nejsou real-time\n• Sportovní hrudní pásy – měří tep, ale nemají dechová cvičení\n• Mobilní aplikace na dech – chybí zpětná vazba',
@@ -51,6 +54,7 @@ const DEMO_CANVASES = [
   },
   {
     name: 'Psychohygienický hub pro sociální služby',
+    author: 'Jirka',
     blocks: {
       'problem': '• Pracovníci sociálních služeb jsou dlouhodobě mentálně vyčerpaní a hrozí jim vyhoření\n• Nemají dostupné a finančně přijatelné místo na psychické dobití',
       'existing-alternatives': '• Existující služby jsou drahé nebo geograficky nedostupné (Praha, Brno, Ostrava)\n• Ústecký kraj je v tomto zanedbaný\n• Zaměstnavatelé občas platí jednorázový kurz',
@@ -67,6 +71,7 @@ const DEMO_CANVASES = [
   },
   {
     name: 'Bylinkové čaje ze Šumavy',
+    author: 'Martin',
     blocks: {
       'problem': '• Lidé dbající na zdravý životní styl chtějí kvalitní bylinky s dohledatelným původem\n• Nechtějí bylinky cestující přes půl světa bez známé kvality',
       'existing-alternatives': '• Bylinky od jiných pěstitelů z ČR\n• Běžně dostupné bylinkové čaje v obchodech (bez důrazu na lokální původ)',
@@ -101,6 +106,7 @@ const useCanvasStore = create(
           .map(demo => {
             const canvas = createEmptyCanvas(demo.name)
             canvas.blocks = { ...canvas.blocks, ...demo.blocks }
+            if (demo.author) canvas.author = demo.author
             return canvas
           })
         if (newCanvases.length > 0) {
