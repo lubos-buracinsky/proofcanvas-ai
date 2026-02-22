@@ -59,7 +59,7 @@ export default function Layout() {
         </div>
 
         <div className="flex items-center gap-2 md:gap-4">
-          <Button variant="ghost" size="sm" className="btn-rainbow text-white shadow-md hover:shadow-lg transition-shadow" onClick={() => setShowGenerate(true)}>
+          <Button className="btn-rainbow text-white !border-0 px-3 py-1.5 md:px-4 md:py-2 shadow-md hover:shadow-lg transition-all hover:-translate-y-0.5" onClick={() => setShowGenerate(true)}>
             <AutoFixHighIcon sx={{ fontSize: 18 }} />
             <span className="hidden sm:inline font-medium">{t('toolbar.generateIdea')}</span>
             <span className="sm:hidden font-medium">Idea</span>
