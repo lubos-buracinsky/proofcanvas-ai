@@ -32,14 +32,19 @@ export default function CanvasBlock({ block, value, subsectionValue, onChange, o
       transition={{ delay: index * 0.05, duration: 0.3 }}
     >
       {/* Header */}
-      <div className="flex items-start justify-between px-3 pt-3 pb-1">
-        <div className="min-w-0 flex-1">
-          <h3 className="text-xs font-bold uppercase tracking-wide text-text dark:text-dark-text truncate">
-            {t(`block.${block.id}`)}
-          </h3>
-          <p className="text-[10px] text-text-secondary dark:text-dark-text-secondary mt-0.5 line-clamp-1">
-            {t(`block.${block.id}.sub`)}
-          </p>
+      <div className="flex items-start justify-between px-3 pt-3 pb-2 border-b border-border/50 dark:border-dark-border/50">
+        <div className="min-w-0 flex-1 flex items-center gap-2">
+          {block.icon && (
+            <block.icon sx={{ fontSize: 18 }} className="text-text-secondary dark:text-dark-text-secondary flex-shrink-0 opacity-60" />
+          )}
+          <div className="min-w-0">
+            <h3 className="text-sm font-bold uppercase tracking-wide text-text dark:text-dark-text truncate leading-tight">
+              {t(`block.${block.id}`)}
+            </h3>
+            <p className="text-[11px] text-text-secondary dark:text-dark-text-secondary mt-0.5 line-clamp-1">
+              {t(`block.${block.id}.sub`)}
+            </p>
+          </div>
         </div>
         <div className="flex items-center gap-0.5 flex-shrink-0">
           <button
@@ -48,7 +53,7 @@ export default function CanvasBlock({ block, value, subsectionValue, onChange, o
               transition-colors text-text-secondary dark:text-dark-text-secondary cursor-pointer"
             title={t(`block.${block.id}.info`) || ''}
           >
-            <InfoOutlinedIcon sx={{ fontSize: 14 }} />
+            <InfoOutlinedIcon sx={{ fontSize: 15 }} />
           </button>
           <button
             onClick={() => onSuggest(block.id)}
@@ -56,7 +61,7 @@ export default function CanvasBlock({ block, value, subsectionValue, onChange, o
               transition-colors text-text-secondary dark:text-dark-text-secondary cursor-pointer"
             title={t('ai.suggestion')}
           >
-            <AutoAwesomeIcon sx={{ fontSize: 14 }} />
+            <AutoAwesomeIcon sx={{ fontSize: 15 }} />
           </button>
         </div>
       </div>

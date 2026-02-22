@@ -86,12 +86,12 @@ export default function CanvasToolbar({ onGenerate, onValidate, onFollowUp, onEx
 
       {/* Actions */}
       <div className="flex items-center gap-1 sm:gap-2">
-        <Button variant="primary" size="sm" onClick={onGenerate}>
+        <Button variant={isEmpty ? 'primary' : 'secondary'} size="sm" onClick={onGenerate}>
           <AutoFixHighIcon sx={{ fontSize: 16 }} />
           <span className="hidden sm:inline">{t('toolbar.generate')}</span>
         </Button>
 
-        <Button variant="secondary" size="sm" onClick={onValidate} disabled={isEmpty}>
+        <Button variant={isEmpty ? 'secondary' : 'primary'} size="sm" onClick={onValidate} disabled={isEmpty}>
           <FactCheckIcon sx={{ fontSize: 16 }} />
           <span className="hidden md:inline">{t('toolbar.validate')}</span>
         </Button>
