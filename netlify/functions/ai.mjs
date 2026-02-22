@@ -273,7 +273,7 @@ Buď konkrétní, akční a přizpůsobený tomuto konkrétnímu byznysu. Použ�
 export default async (req) => {
   // Handle health check
   const url = new URL(req.url)
-  const path = url.pathname.replace(/^\/.netlify\/functions\/ai\/?/, '')
+  const path = url.pathname.replace(/^\/.netlify\/functions\/ai\/?/, '').replace(/^\/api\/ai\/?/, '')
 
   if (req.method === 'GET' && (path === 'health' || path === '')) {
     return new Response(JSON.stringify({ status: 'ok', ai: !!process.env.ANTHROPIC_API_KEY }), {
