@@ -50,58 +50,52 @@ export default function Layout() {
   }, [])
 
   return (
-    <div className="h-[100dvh] flex flex-col bg-surface dark:bg-dark-surface overflow-hidden">
-      {/* Header */}
-      <header className="flex flex-wrap items-center justify-between gap-y-2 px-3 md:px-6 py-2 sm:py-3 border-b border-border dark:border-dark-border bg-white/80 dark:bg-dark-surface-alt/80 backdrop-blur-md sticky top-0 z-40 transition-colors">
-        <div className="flex items-center gap-2 md:gap-3">
-          <div className="p-1.5 md:p-2 bg-primary/10 rounded-lg">
-            <GridViewIcon className="text-primary text-xl md:text-2xl" />
-          </div>
-          <h1 className="text-base md:text-xl font-bold text-text dark:text-dark-text tracking-tight">
-            Lean Canvas <span className="text-primary">AI</span>
-          </h1>
-        </div>
-
-        <div className="flex items-center gap-2 md:gap-4">
-          <Button className="btn-rainbow text-white !border-0 px-3 py-1.5 md:px-4 md:py-2 shadow-md hover:shadow-lg transition-all hover:-translate-y-0.5" onClick={() => setShowGenerate(true)}>
-            <AutoFixHighIcon sx={{ fontSize: 18 }} />
-            <span className="hidden sm:inline font-medium">{t('toolbar.generateIdea')}</span>
-            <span className="sm:hidden font-medium">Idea</span>
-          </Button>
-
-          {/* Desktop Controls */}
-          <div className="hidden md:flex items-center gap-2 border-l border-border dark:border-dark-border pl-4 ml-2">
-            <LangToggle />
-            <ThemeToggle />
+    <div className="h-[100dvh] bg-surface dark:bg-dark-surface overflow-hidden relative">
+      {/* Top Navigation Area - collapses on mobile scroll */}
+      <div
+        className={`fixed top-0 left-0 right-0 z-40 transition-transform duration-300 ease-out shadow-sm dark:shadow-none bg-surface dark:bg-dark-surface ${toolbarHidden ? '-translate-y-full md:translate-y-0' : 'translate-y-0'}`}
+      >
+        {/* Header */}
+        <header className="flex flex-wrap items-center justify-between gap-y-2 px-3 md:px-6 py-2 sm:py-3 border-b border-border dark:border-dark-border bg-white/80 dark:bg-dark-surface-alt/80 backdrop-blur-md transition-colors">
+          <div className="flex items-center gap-2 md:gap-3">
+            <div className="p-1.5 md:p-2 bg-primary/10 rounded-lg">
+              <GridViewIcon className="text-primary text-xl md:text-2xl" />
+            </div>
+            <h1 className="text-base md:text-xl font-bold text-text dark:text-dark-text tracking-tight">
+              Lean Canvas <span className="text-primary">AI</span>
+            </h1>
           </div>
 
-          {/* Mobile Menu */}
-          <MobileMenu />
-        </div>
-      </header>
+          <div className="flex items-center gap-2 md:gap-4">
+            <Button className="btn-rainbow text-white !border-0 px-3 py-1.5 md:px-4 md:py-2 shadow-md hover:shadow-lg transition-all hover:-translate-y-0.5" onClick={() => setShowGenerate(true)}>
+              <AutoFixHighIcon sx={{ fontSize: 18 }} />
+              <span className="hidden sm:inline font-medium">{t('toolbar.generateIdea')}</span>
+              <span className="sm:hidden font-medium">Idea</span>
+            </Button>
 
-      {/* Toolbar - collapses on scroll down relative to content layout*/}
-      <div className="relative z-30 shadow-sm dark:shadow-none">
-        <div
-          className="transition-all duration-300 ease-in-out overflow-hidden transform-gpu"
-          style={{
-            maxHeight: toolbarHidden ? 0 : 250,
-            opacity: toolbarHidden ? 0 : 1,
-            transform: `translateY(${toolbarHidden ? '-10px' : '0'})`
-          }}
-        >
-          <div className="px-2 md:px-6 py-2">
-            <CanvasToolbar
-              onValidate={() => setShowValidation(true)}
-              onFollowUp={() => setShowFollowUp(true)}
-              onExport={handleExport}
-            />
+            {/* Desktop Controls */}
+            <div className="hidden md:flex items-center gap-2 border-l border-border dark:border-dark-border pl-4 ml-2">
+              <LangToggle />
+              <ThemeToggle />
+            </div>
+
+            {/* Mobile Menu */}
+            <MobileMenu />
           </div>
+        </header>
+
+        {/* Toolbar */}
+        <div className="px-2 md:px-6 py-2 relative z-30">
+          <CanvasToolbar
+            onValidate={() => setShowValidation(true)}
+            onFollowUp={() => setShowFollowUp(true)}
+            onExport={handleExport}
+          />
         </div>
       </div>
 
       {/* Main content */}
-      <main ref={mainRef} className="flex-1 overflow-x-hidden overflow-y-auto scroll-smooth">
+      <main ref={mainRef} className="h-[100dvh] overflow-x-hidden overflow-y-auto scroll-smooth pt-[150px] md:pt-[130px]">
         <div className="w-full max-w-[1600px] mx-auto pb-8">
           <CanvasBoard ref={canvasRef} />
         </div>
