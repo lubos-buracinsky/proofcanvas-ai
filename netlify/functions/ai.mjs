@@ -239,12 +239,12 @@ Pomoz uživateli vylepšit jeho business model, odpovídej na otázky o lean met
         max_tokens: 256,
         messages: [{
           role: 'user',
-          content: `Jsi expert na Lean Canvas. Ohodnoť následující Lean Canvas celkovým skóre 1–10 a jednou větou zdůvodni. Odpovídej ČESKY.
+          content: `Jsi expert na Lean Canvas. Ohodnoť následující Lean Canvas celkovým skóre 0–10 (jedno desetinné místo) a jednou větou zdůvodni. Odpovídej ČESKY.
 
 ${canvasContext}
 
 Vrať POUZE validní JSON (žádný markdown):
-{"score": 7, "summary": "Krátké zdůvodnění..."}`,
+{"score": 7.5, "summary": "Krátké zdůvodnění..."}`,
         }],
       }
 

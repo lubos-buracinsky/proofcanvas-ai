@@ -202,15 +202,6 @@ export default function CanvasBlock({ block, value, subsectionValue, onChange, i
             >
               <InfoOutlinedIcon sx={{ fontSize: 15 }} />
             </button>
-            <button
-              onClick={handleImprove}
-              className="p-1 rounded-md hover:bg-primary/10 dark:hover:bg-primary/20
-                transition-colors text-primary cursor-pointer flex items-center gap-0.5"
-              title={t('block.improve')}
-            >
-              <AutoAwesomeIcon sx={{ fontSize: 15 }} />
-              <span className="text-[10px] font-medium">{t('block.improve')}</span>
-            </button>
           </div>
         </div>
 
@@ -234,8 +225,8 @@ export default function CanvasBlock({ block, value, subsectionValue, onChange, i
           {/* Text preview (truncated) */}
           {value ? (
             <div
-              className="px-3 pt-1 text-sm text-text dark:text-dark-text whitespace-pre-wrap overflow-hidden"
-              style={{ display: '-webkit-box', WebkitLineClamp: block.subsection ? 5 : 8, WebkitBoxOrient: 'vertical', cursor: 'pointer' }}
+              className="px-3 pt-1 text-xs leading-relaxed text-text dark:text-dark-text whitespace-pre-wrap overflow-hidden"
+              style={{ display: '-webkit-box', WebkitLineClamp: block.subsection ? 7 : 12, WebkitBoxOrient: 'vertical', cursor: 'pointer' }}
               onClick={() => setExpanded(true)}
               role="button"
               tabIndex={0}
@@ -247,7 +238,7 @@ export default function CanvasBlock({ block, value, subsectionValue, onChange, i
               value=""
               onChange={handleChange}
               placeholder={t(`block.${block.id}.ph`)}
-              className="canvas-textarea w-full px-3 text-sm bg-transparent resize-none flex-1
+              className="canvas-textarea w-full px-3 text-xs bg-transparent resize-none flex-1
                 text-text dark:text-dark-text placeholder:text-text-secondary/50 dark:placeholder:text-dark-text-secondary/50
                 focus:outline-none"
             />
@@ -264,8 +255,8 @@ export default function CanvasBlock({ block, value, subsectionValue, onChange, i
             </div>
             {subsectionValue ? (
               <div
-                className="px-1 pb-2 text-sm text-text dark:text-dark-text whitespace-pre-wrap overflow-hidden"
-                style={{ display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical' }}
+                className="px-1 pb-2 text-xs leading-relaxed text-text dark:text-dark-text whitespace-pre-wrap overflow-hidden"
+                style={{ display: '-webkit-box', WebkitLineClamp: 4, WebkitBoxOrient: 'vertical' }}
               >
                 {subsectionValue}
               </div>
@@ -274,7 +265,7 @@ export default function CanvasBlock({ block, value, subsectionValue, onChange, i
                 value=""
                 onChange={handleSubChange}
                 placeholder={t(`block.${block.subsection.id}.ph`)}
-                className="canvas-textarea w-full px-1 pb-2 text-sm bg-transparent resize-none
+                className="canvas-textarea w-full px-1 pb-2 text-xs bg-transparent resize-none
                   text-text dark:text-dark-text placeholder:text-text-secondary/50 dark:placeholder:text-dark-text-secondary/50
                   focus:outline-none"
                 style={{ minHeight: '40px' }}
@@ -283,15 +274,25 @@ export default function CanvasBlock({ block, value, subsectionValue, onChange, i
           </div>
         )}
 
-        {/* Expand icon at bottom-right */}
-        <button
-          onClick={() => setExpanded(true)}
-          className="absolute bottom-1 right-1 p-1 rounded-md hover:bg-surface-hover dark:hover:bg-dark-surface-hover
-            transition-colors text-text-secondary/40 hover:text-text-secondary dark:text-dark-text-secondary/40 dark:hover:text-dark-text-secondary cursor-pointer"
-          title={t('block.expand')}
-        >
-          <FullscreenIcon sx={{ fontSize: 16 }} />
-        </button>
+        {/* Bottom action buttons */}
+        <div className="absolute bottom-1 right-1 flex items-center gap-0.5">
+          <button
+            onClick={handleImprove}
+            className="p-1 rounded-md hover:bg-primary/10 dark:hover:bg-primary/20
+              transition-colors text-primary/40 hover:text-primary cursor-pointer"
+            title={t('block.improve')}
+          >
+            <AutoAwesomeIcon sx={{ fontSize: 14 }} />
+          </button>
+          <button
+            onClick={() => setExpanded(true)}
+            className="p-1 rounded-md hover:bg-surface-hover dark:hover:bg-dark-surface-hover
+              transition-colors text-text-secondary/40 hover:text-text-secondary dark:text-dark-text-secondary/40 dark:hover:text-dark-text-secondary cursor-pointer"
+            title={t('block.expand')}
+          >
+            <FullscreenIcon sx={{ fontSize: 14 }} />
+          </button>
+        </div>
       </motion.div>
 
       {/* Expanded overlay */}
