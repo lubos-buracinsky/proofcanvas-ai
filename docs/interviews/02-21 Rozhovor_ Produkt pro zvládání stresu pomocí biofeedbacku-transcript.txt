@@ -1,0 +1,68 @@
+00:00:00 Speaker 1
+Tak, dobře, tak co je ten problém, co ta vaše věc řeší? A máme 10 minut, ale ne celých.
+00:00:07 Speaker 2
+Jasně, dobře, takže naše... Náš výjezd řeší náš problém se stresem, anxiety a regulací nervového systému, autoregulací nervového systému.
+00:00:27 Speaker 1
+Takže lidi nejsou schopní regulovat svůj nervový systém a mají úzkosti.
+00:00:34 Speaker 2
+Jo, mají už ADHD, úzkosti, budou mít takový úzný typ.
+00:00:39 Speaker 1
+Super, super. A tak teda tím pádem hned druhá otázka je pro koho to je? Kdo je ta cílová skupina? Co nejúžší podle tebe. 
+00:00:46 Speaker 2
+Co nejúžší? My jsme měli co nejúžší, nejúžšejc.
+00:00:51 Speaker 1
+Nebo máme takovou cílovou skupinu a pak máš ty early adopters. Kdo to vznala. 
+00:00:56 Speaker 2
+No jako tohle...
+00:00:58 Speaker 1
+Není to pro každýho, že jo. 
+00:01:00 Speaker 2
+Není to úplně pro každýho. Nejvíc by to bylo pro lidi, co už mají problémy, už se snaží někomu docházet. Tak kdo. 
+00:01:09 Speaker 1
+To jsou... To jsou nějaký manažery... nebo lidi, co jsou v klinikách, kteří mají vlajčku, nebo kdo to je. 
+00:01:42 Speaker 2
+To je skupina nějakých lidí, nebude to třeba tak gigantický trh, ale tam ti lidi jsou hodně responsivní. Jako ti koučové říkají, že bysme brali nějaký device tady víc. A potom to můžou být lidi, kteří, já nechci říkat to jako prevence, ono by to mohlo být i ve školách a takovýhle styly, ale to to stačí jako základ cílovky.
+00:02:05 Speaker 1
+No a teda co je konkrétně to řešení, jak to jako umožňuje, že jsme schopni regulovat o jim zájty, tu úzkost. 
+00:02:13 Speaker 2
+Jo, no tak hlavní způsob, jak regulovat nervový systém je skrz parasymmetický systém, to znamená, že se aktivuje rest and digest, takže trávěcí systém, klidový režim. Je to přesbloudivý nerv, to znamená, že jedna z nejstrašných způsobů, jak je, tak je se dostat skrz ovládání dechu a soustředění na něj, tím pádem sklidíme mysl, bude mít něco přítomného a dech je jediná autonomní...
+00:02:46 Speaker 2
+Náš produkt pomůže? Náš produkt pomůže, že jednak ti pomůže ukázat, že to děláš dobře, což jako lidi normálně neví, takže on ti to ukáže, dáváš jistě zpětnou vazbu.
+00:02:55 Speaker 1
+Je to aplikace, je to hardware nějaký, co si nasadím, jak mě to řeší. 
+00:03:01 Speaker 2
+Je to hardware Prima Pass, který nově začíná měřit základní funkce, což znamená, že je to dobrý biofeedback, měří dech a měří tepu. Z dechu a tepu ty můžeš počítat i korelaci tyhle s těch dvou, což znamená, že bude měřit HRV, který se používá u všech wearables na měření stresu, takže hodinky, prsteny, ty všechny používají HRV na měření stresu. Ale s tím dechem... Můžeš ještě dát takovou ideální korelaci. svým dechům, svým tepem, to můžeme ještě přeslížit.
+00:03:31 Speaker 1
+Což si dostáváme k tomu, co je unikátnost té propozice, a to je tohle, že to je jako personalizovaný coaching na tvůj konkrétní dech v návaznosti na tvoje biologické hodnoty.
+00:03:41 Speaker 2
+Unikátnost toho je, že propujeme tyhle dva senzory, což zatím nikdo nedělá, nebo zatím jsme nikdo takovýho nenašli, která vypočítává RSA hodnotu, to je Respiratory Sinus Arrhythmia, to je vlastně segment HRV, takže to je vyloženě část tepu, která se zaměřuje na ten dech. A náš snaha, PetClone, je vlastně vymyslet systém, který tobě řekne, naučí tebe tvůj ideální dech, takový, který ti bude držet během dne ideální jako tepovku.
+00:04:11 Speaker 1
+A jaké jsou existující řešení obdobného typu na tenhle problém. 
+00:04:16 Speaker 2
+No, na měření stresů jsou různé HRV variables, ale jejich problém je, že nejsou real-time, oni jakoby zpětně je průměrujou, a že zpětně vidíš během dne, jestli jsi byl ve stresu. Takže real time, takže jako, to je výhoda. Pak jsou nějaký jako sportovní pásy, který ti měří ten tap. A s kterým asi už můžeš měřit jakoby z nějakou aplikací. Ale ty zase nemají v sebe třeba dechové cvičení, protože jsou vyroženě jenom měření tapu. Takže ty nejsou jenom na dech. Pak je spousta aplikací do mobilu na dech, který jsou celkem dobrý,
+00:04:46 Speaker 2
+ale pokud nemůžeš správně dechat, tak ti to zase tak nepomůže a nemusí být tak zábavný.
+00:04:51 Speaker 1
+Jak bys to shrnul? To je můj příklad Uber pro doktory, tak co je tohle? Jak bys to shrnul? No jako, co je ten high level concept? Když bys to měl jako připodobnit, vysvětlit to někomu od stolu, bez tohohle záhodlivého popisu, říct jako co to je. Je to appka na dechání pro vystresovaný lidi, nebo je to... Nevím, Headspace, Dejchání, nebo jak dokážeš to zakrnout. 
+00:05:19 Speaker 2
+No, tak je to systém na splnění tvýho nerovního systému, to je asi nejjednouší věta, ale je to v podstatě aplikace, která ti může skrz hry, skrz gamifikaci, tak ti může naučit ovládat plně tvůj dech a splnit.
+00:05:34 Speaker 1
+Tak a kterýma kanálama byste dostal k tý cílový skupině, když si vybereš asi tu nejhlavnější, třeba jestli jsi mluvil o těch vrcholových biznesmenech, ale nejsem si jistý, jestli to by byla ta první skupina, do kterého byste šli, tak kterýma kanálama byste to dostal. 
+00:05:49 Speaker 2
+My jsme šli za... Je tím za klinikama. Kdyby jsme obešli kliniky, co už problémy si řešej, anebo kouče, co učejí držení těla, co učejí core, nebo co učejí meditaci, nebo už kouče to třeba učejí, jako ty businessmeny, už tam chodí, jako že jsme s nimi mluvili, tak ty už mají své klienty a abychom to měli jenom takový...
+00:06:15 Speaker 1
+To jsou ty klíčový metriky, podle kterých byste poznali, že to je úspěch. Co byste měřili, jak byste vyhodnotili, že jo, tohle funguje. 
+00:06:26 Speaker 2
+Tu efektivitu toho dechu po nějaký další čas se dá vlastně měřit relativně snadno, ale bylo by zajímavé měřit, jak se snižuje ARV po nějakém čase. To znamená, že čím dýle to lidi používají, takže se jim snižuje ten bass, ten hardback, hardbeat. Takže... ... se evidentně zklidňuju a hlavní hodnota by byla RSA nejspíš, která je vlastně přímá korelace toho dechu. To znamená, že ta hodnota by mohla uvčil v milisekundách, jak se ti daří efektivně dejchat. Skvělý. Jak byste vydělali ty prachy? Co by byly zdroje příjmů. 
+00:07:01 Speaker 1
+Prodávali byste jako produkt? Byly by to fíčka, split field, lektorů? O čem by to bylo. 
+00:07:06 Speaker 2
+Určitě bychom tam měli marži na těch pásech, co bychom prodávali, ten hardware. A pak by tam byla nějaká specifická subscription pro nemocnice, hospice.
+00:07:20 Speaker 1
+Super. A co by byly zdroje nákladů, typově? Hardware. Hardware. Jsi vyvojil hardware? Nákup potom vyvinutého hardware? Ne.
+00:07:32 Speaker 2
+Počítáme tak 53. Hardware a vývoj softwarů a pak nějaký eventy, kdybychom to prezentovali, nebo nějaký show, kdybychom, případně nějaký stánky, nebo něco, kdybychom vzdělali nějaký veletrhy.
+00:07:45 Speaker 1
+Možná nějaký sales, takže by někdo chodil po těch klinikách a tak. No tak super. Tak je to hrozně rychlý, tak co mluvám, ale pointe je, že by ti to mělo znovu připomenout všechny ty jednotlivý, hubající se části a zvědomit si, co máš jako domyšlený, nebo nemáš. A protože to máme nahraný, tak já to hodím na digitální Canvas a frknu tam tvoje oblíbený Gemini a ti dá oponentů.
+00:08:14 Speaker 2
+Super, tak jo. Tak díky, tak se budu těšit.

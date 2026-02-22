@@ -1,0 +1,64 @@
+00:00:00 Speaker 1
+Tak, tahle metoda se jmenuje Lean Canvas, stejně co z mé hlavy, ale pointa je, že máš jednu stránku, kde máš nějaké boxíky, a když se nám podaří vyplnit, jakoby si budouc odpovědět ty jednotlivý otázky, tak tobě to dá ten holistický pohled na ten záměr. Že by jsi měl být jako jistější, potom si tím mít někam dál, to třeba dál validovat. Takže já se hned zeptám, protože nám běží čas, co je jakoby ten problém, který ten nápad, ten produkt nebo ta služba řeší. Co je ten problém. 
+00:00:30 Speaker 2
+Ten problém je nějaký špatný UX od katastru nemovitostí a od toho, že nenabízím ty funkce, které uživatelé chtěj, jakože oni je chtěj, když to slyším od mého kámoše, třeba od realitního matéře. tak ty problémy tam jsou, že chtějí třeba vidět sousední parcely, sousední parcely sousedů, čili já si zadám nějakou sousední parcelu a chci vidět její sousedy a chci vědět,
+00:01:03 Speaker 2
+jestli tam jsou nějaké věcné břemena, chci vědět, jestli tam jsou nějaké plomby, nebo...
+00:01:10 Speaker 1
+Což všechno tohle asi kazastre umožňuje, ale je to poměrně těžkopáno, takže ten problém, co to řeší, je teda nedostatečná použitelnost stávajícího webu katastrů, pro nějaký jako lepší pohled na vyhodnocení třeba kvality pozemků, prodejní ceny, já nevím, něco v tomhle smyslu. Takže hned v závisu se ptám na druhou věc. Pro koho vlastně tohle je? Kdo je ta cílová skupina. 
+00:01:39 Speaker 2
+Tohle je pro realitní makléře. Je to pro... ... Někdo je nejdalší, mě moc nenapadá.
+00:01:50 Speaker 1
+Ne, to je v pohodě. Takže je to pro reální makléře. A to řešení nás počívá v čem? Jak to adresuje ten problém špatného UX. 
+00:01:59 Speaker 2
+Jak to vyřešit? Jasně. Vyřešit to tak, že, bude existovat, taková webová stránka, aplikace, můžou být i mobilní, která ukáže těm uživatelům ty možnosti, co oni můžou jako se dozvědět z toho katastru nemovitostí, jo? Čili, že se napojí vlastně, bude existovat nějakej frontend a ten se napojí na nějakej backend a ten backend si bude tahat data z katastru nemovitostí, což vím, že LLZ, což vím, že DA.
+00:02:34 Speaker 2
+To je tvojím jako řešením.
+00:02:37 Speaker 1
+Takže prostě point je, že to bude nějaký používatelský, přívětivý web, kterej bude adresovat ty jednotlivý věci, co jsi změňoval na začátku. To bylo jednodušší. A ta unikátnost toho řešení teda bude spočívat v čem, kromě toho, že to bude unikátnost. 
+00:02:52 Speaker 2
+Unikátnost.
+00:02:52 Speaker 1
+Čím to bude jako special. 
+00:02:54 Speaker 2
+Že tam budou ty, ty feature tam bude i víc, to nebude jenom, že tam bude... Takhle. To, že ukážeme sousedy sousedů, to jsem ještě nikde neviděl. Žádná aplikace, možná to nějaký umí, já jsem jí neviděl. Ukázka sousedních parcel, kolik měří. Délka hrany. kde je nejbližší třeba i kde je nejbližší autobusová zastávka, něco podobného, jako mám na PCSZ, kde tam tam ukazují, že jo, kde je nejbližší autobusová zastávka, kde je nejbližší lékárna,
+00:03:27 Speaker 2
+tak vlastně skloupit všechno, všechny tyhle ty věci, ty vlastnosti, ty charakteristiky těch pozemků a to, co lidi vlastně hledají. Když si hledají pozemek, nebo ty reality makréři, když si vytipovávají pozemky, tak to skloupit do jedné aplikace a agrekovat to, agrekovat všechny ty featurey od mapy CZ, od katastru, do jedné aplikace.
+00:03:52 Speaker 1
+OK, OK, to je dost unikátný asi, teda nevím, hlavný segment.
+00:03:55 Speaker 2
+Takže ještě jsem zapomněl říct jednu věc. Chci tam zapojit AI ve smyslu, že se člověk bude moct zadat číslo parcely a zeptá se AI. Bylo v... ... ... minulém roce... Nějaká změna na sousedních pozemcích, třeba, takže nějaký AI.
+00:04:21 Speaker 1
+Takže AI pokoháněný, vizuálně hezčí, UX-ově lepší, rejstřík. Takže ty existující řešení dneska jsou jaký alternativní? Je to rejstřík. 
+00:04:31 Speaker 2
+Je to rejstřík, mapy CZ, cenová mapa, pak je nějaký, pokud vím, tak existoval e-katastr, ale ten vůbec jako najednou nefunguje, mi přijde, a nemá AI. Jak třeba PZMK? PZMK neznám. Je to něco podobného. 
+00:04:52 Speaker 1
+Je to nová střeva, která susá data z katastru a dělají to jako mladí kluci, takže tam je jako snaha o něco takového, ale já nevím přesně, kde to je, ale znám je. Dobrý. A kdyby jsi to měl teda nějak shodnout v kostce, já tady mám napsáno Uber pro doktory třeba, tak jako co to je? Je to... AI katastrof pro realtiáky.
+00:05:15 Speaker 2
+AI katastrof pro realtiáky, jo to je dobrý způsob.
+00:05:17 Speaker 1
+Ok, můžete se nechat. A teď teda, kterýma kanálama byste k těm realtiákům dostal, aby se o tom vůbec dozvěděli. 
+00:05:25 Speaker 2
+Tak nejlepší kanál je prostě Perhuba, čili, že si to řeknu. Já znám jednoho realtiáka, ten jich zná deset a ty znají několik dál. Takže Direct Sales prostě. Jo, případně mě napadají nějaký Facebooky, Instagramy, ale to spíš míň asi.
+00:05:44 Speaker 1
+Co jsou klíčový metriky, který bys měřil, aby jsi vlastně řekl, že toto funguje? A co by to muselo být. 
+00:05:54 Speaker 2
+Byl by to jako počet realtiáků, nebo? Počet registrovaných uživatelí. Počet platících uživatelů. Počet vyhledaných pozemků, jako těch parcel. Počet AI dotazů.
+00:06:16 Speaker 1
+A teď jaké by byly zdroje příjmu? Jak byste vydělávali prachy. 
+00:06:24 Speaker 2
+Budou tam určitě nějaké funkce, které jsou neplacené, čili je tam nějaký freemill. Můžete si možná vyhledat parcelu. Tak už je přeplatný prostě. Přeplatný, jo, já bych si čím říkal.
+00:06:35 Speaker 1
+Ještě je něco jiného, co by tam bylo jako zdrojícímu? Jenom to přeplatný, no. OK. A pak teda o zdroje nákladů typově. Na to, abyste to mohli spustit, plus podobný dál provoz, od co by jako šlo o nákladové. 
+00:06:50 Speaker 2
+Nákladové by šlo hlavně o variabilní náklady za AI, a za dotazy do katastru nemovitostí na vlastníky, protože za list vlastnictví se platí stovka.
+00:07:04 Speaker 1
+Plus asi teda vývoj toho softwaru, ne? Plus vývoj softwaru. A nějaký další provoz možná a marketing teda asi ne, protože máte ten samý produkt.
+00:07:11 Speaker 2
+Marketing minimálně, jo, taky.
+00:07:13 Speaker 1
+No a co je ta nefairová výhoda? Poslední otázka, co... Já řeknu, mě se to líbí. co budu udělat, tak co z tebe dělat toho člověka na správném místě a mě to vlastně stěžuje, že já bych nemohl udělat to samý, protože ty máš tu neférovou výhodu. Znáš někoho, nebo máš nějakou technologii, která je tvoje vlastní. 
+00:07:35 Speaker 2
+Mám vlastně to know-how okolo toho registru, okolo těch služeb, jak fungujou. Takže tu API znám a umím programovat. Umím používat AI, takže mě to naprogramuje.
+00:07:55 Speaker 1
+Dobrý, tak asi budeme končit, protože se museli proletět, on je dost dvěcký a už jsou dávno dvě minuty, ale pointa je, že teďka by ti to mělo, nebo za mě by jsi měl strávit trošičku víc času v těch jednotlivých kolonkách, co jmená třeba v těch existujících alternativách a v té unitární propozici, jestli to je obhajitelný, když bys pak přišel třeba za investorem, nebo bys do toho přišel na nějaký vlastní prachy, tak já bych to chtěl, aby to bylo co chtěl, ale čistý a jasný a obhajitelný, že je to tak, ale pointa je, že pak vlastně ty nemusíš to celý hned dělat, ale můžeš si udělat třeba nějakou landing page, kde prezentuješ celý ten nápad, jsou to nějaký mockupy a jdeš třeba s těma reálničákama a sonduješ, jestli by ti za to daly prachy a kolik, než se vrhneš do toho, že budeš tě tahat přes API katastrofy.
