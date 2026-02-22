@@ -39,6 +39,11 @@ export default function useCanvas() {
     [store.suggestionsData, store.activeCanvasId]
   )
 
+  const score = useMemo(
+    () => store.scoreData[store.activeCanvasId] || null,
+    [store.scoreData, store.activeCanvasId]
+  )
+
   return {
     ...store,
     activeCanvas,
@@ -47,5 +52,6 @@ export default function useCanvas() {
     followUp,
     validation,
     suggestions,
+    score,
   }
 }

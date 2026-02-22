@@ -174,6 +174,42 @@ Buď konkrétní a konstruktivní.`,
   }
 })
 
+// AI Score
+router.post('/score', async (req, res) => {
+  const sse = sseStream(res)
+  const { blocks } = req.body
+
+  const canvasContext = blocksToContext(blocks)
+  if (canvasContext === 'Canvas je prázdný.') return sse.error('Canvas je prázdný.')
+
+  try {
+    const stream = anthropic.messages.stream({
+      model: MODEL,
+      max_tokens: 256,
+      messages: [
+        {
+          role: 'user',
+          content: `Jsi expert na Lean Canvas. Ohodnoť následující Lean Canvas celkovým skóre 1–10 a jednou větou zdůvodni. Odpovídej ČESKY.
+
+${canvasContext}
+
+Vrať POUZE validní JSON (žádný markdown):
+{"score": 7, "summary": "Krátké zdůvodnění..."}`,
+        },
+      ],
+    })
+
+    for await (const event of stream) {
+      if (event.type === 'content_block_delta' && event.delta.type === 'text_delta') {
+        sse.send(event.delta.text)
+      }
+    }
+    sse.done()
+  } catch (err) {
+    sse.error(err.message)
+  }
+})
+
 // Contextual chat
 router.post('/chat', async (req, res) => {
   const sse = sseStream(res)

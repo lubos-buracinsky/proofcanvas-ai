@@ -96,6 +96,7 @@ const useCanvasStore = create(
       followUpData: {},
       validationData: {},
       suggestionsData: {},
+      scoreData: {},
 
       // Initialize with demo canvases
       initialize: () => {
@@ -132,9 +133,11 @@ const useCanvasStore = create(
           const newFollowUp = { ...state.followUpData }
           const newValidation = { ...state.validationData }
           const newSuggestions = { ...state.suggestionsData }
+          const newScore = { ...state.scoreData }
           delete newFollowUp[id]
           delete newValidation[id]
           delete newSuggestions[id]
+          delete newScore[id]
           if (filtered.length === 0) {
             const canvas = createEmptyCanvas('Nový canvas')
             return {
@@ -143,6 +146,7 @@ const useCanvasStore = create(
               followUpData: newFollowUp,
               validationData: newValidation,
               suggestionsData: newSuggestions,
+              scoreData: newScore,
             }
           }
           return {
@@ -151,6 +155,7 @@ const useCanvasStore = create(
             followUpData: newFollowUp,
             validationData: newValidation,
             suggestionsData: newSuggestions,
+            scoreData: newScore,
           }
         })
       },
@@ -216,6 +221,15 @@ const useCanvasStore = create(
               ...state.suggestionsData[state.activeCanvasId],
               [blockId]: data,
             },
+          },
+        }))
+      },
+
+      setScoreData: (data) => {
+        set(state => ({
+          scoreData: {
+            ...state.scoreData,
+            [state.activeCanvasId]: data,
           },
         }))
       },
