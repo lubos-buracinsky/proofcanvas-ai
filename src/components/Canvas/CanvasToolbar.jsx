@@ -40,9 +40,9 @@ function CanvasDropdown({ canvases, activeId, onChange, onCreate }) {
     <div className="relative" ref={ref}>
       <button
         onClick={() => setOpen(v => !v)}
-        className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-border dark:border-dark-border bg-white dark:bg-dark-surface hover:bg-surface-hover dark:hover:bg-dark-surface-hover transition-colors cursor-pointer min-w-0 max-w-[260px]"
+        className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-border dark:border-dark-border bg-white dark:bg-dark-surface hover:bg-surface-hover dark:hover:bg-dark-surface-hover transition-colors cursor-pointer min-w-0"
       >
-        <span className="text-base font-semibold text-text dark:text-dark-text truncate" style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}>
+        <span className="text-base font-semibold text-text dark:text-dark-text" style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}>
           {active?.name || '—'}
           {active?.author && <span className="text-text-secondary dark:text-dark-text-secondary ml-1">({active.author})</span>}
         </span>
