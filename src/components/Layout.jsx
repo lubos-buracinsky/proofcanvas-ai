@@ -64,16 +64,18 @@ export default function Layout() {
         </div>
       </header>
 
-      {/* Toolbar - slides away on scroll down */}
-      <div
-        className="sticky top-0 z-30 transition-transform duration-300"
-        style={{ transform: toolbarHidden ? 'translateY(-100%)' : 'translateY(0)' }}
-      >
-        <CanvasToolbar
-          onValidate={() => setShowValidation(true)}
-          onFollowUp={() => setShowFollowUp(true)}
-          onExport={handleExport}
-        />
+      {/* Toolbar - collapses on scroll down */}
+      <div className="sticky top-0 z-30">
+        <div
+          className="transition-all duration-300 overflow-hidden"
+          style={{ maxHeight: toolbarHidden ? 0 : 200 }}
+        >
+          <CanvasToolbar
+            onValidate={() => setShowValidation(true)}
+            onFollowUp={() => setShowFollowUp(true)}
+            onExport={handleExport}
+          />
+        </div>
       </div>
 
       {/* Main content */}
