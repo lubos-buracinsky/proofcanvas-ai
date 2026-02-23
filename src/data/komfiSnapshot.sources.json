@@ -1,0 +1,118 @@
+{
+  "generatedAt": "2026-02-23T00:00:00.000Z",
+  "sourceMode": "core",
+  "sources": [
+    {
+      "id": "komfi-strategie",
+      "pageId": "211bbfa8-450e-8044-84f0-edc6ba018abc",
+      "title": "Strategie",
+      "url": "https://www.notion.so/211bbfa8450e804484f0edc6ba018abc",
+      "freshness": "unknown",
+      "lastEdited": "2025-11-17T13:02:51.009Z",
+      "baseConfidence": 66,
+      "excerpt": "Růstová strategie rozdělená do ACT I–III. Wedge produkt Komfi Bistro, následně prevence přes Komfi Vitalita a dlouhodobá platforma kombinující výživu, prevenci a domácí péči."
+    },
+    {
+      "id": "komfi-o-nas",
+      "pageId": "122bbfa8-450e-81e8-a46f-f6ad8861547f",
+      "title": "O nás",
+      "url": "https://www.notion.so/122bbfa8450e81e8a46ff6ad8861547f",
+      "freshness": "unknown",
+      "lastEdited": "2025-11-17T12:57:19.776Z",
+      "baseConfidence": 65,
+      "excerpt": "Komfi jako služba propojující výživu, prevenci a domácí podporu. Mise do konce 2026: datově podložená péče a personalizovaná výživa napříč regiony ČR."
+    },
+    {
+      "id": "komfi-komunita",
+      "pageId": "211bbfa8-450e-81e7-982f-e3f4de8b1b2a",
+      "title": "Komfi Komunita – spolupráce s obcemi",
+      "url": "https://www.notion.so/211bbfa8450e81e7982fe3f4de8b1b2a",
+      "freshness": "expired",
+      "lastEdited": "2026-02-17T14:48:41.510Z",
+      "baseConfidence": 65,
+      "excerpt": "Strategický cíl rozšířit Komfi do 100+ obcí do konce roku 2026. Definované pilotní fáze, finanční rámce, screening obcí a GTM role pro municipální partnerství."
+    },
+    {
+      "id": "komfi-vitalita-spec",
+      "pageId": "211bbfa8-450e-812c-9b40-ddf1e03d6b47",
+      "title": "Koncepce, specifikace a pilot Vitality",
+      "url": "https://www.notion.so/211bbfa8450e812c9b40ddf1e03d6b47",
+      "freshness": "verified",
+      "lastEdited": "2026-02-17T11:36:49.641Z",
+      "baseConfidence": 84,
+      "excerpt": "Detailní produktový popis Vitality, měřicí model, testovací flow, konkurence na trhu, pricing a pravidla komunikace pro screening službu bez léčebných claimů."
+    },
+    {
+      "id": "komfi-bistro",
+      "pageId": "214bbfa8-450e-8085-88cf-cd8008e90fb0",
+      "title": "Komfi Bistro",
+      "url": "https://www.notion.so/214bbfa8450e808588cfcd8008e90fb0",
+      "freshness": "verified",
+      "lastEdited": "2026-01-29T16:32:13.554Z",
+      "baseConfidence": 82,
+      "excerpt": "Bistro jako aktivní wedge produkt. Uveden provozní rozsah, cílový segment a růstový cíl navýšit aktivní klienty z 250 na 1000+ do konce roku 2026."
+    },
+    {
+      "id": "komfi-vitalita",
+      "pageId": "214bbfa8-450e-8091-91b6-c09882ec3483",
+      "title": "Komfi Vitalita",
+      "url": "https://www.notion.so/214bbfa8450e809191b6c09882ec3483",
+      "freshness": "expired",
+      "lastEdited": "2026-02-01T18:03:00.107Z",
+      "baseConfidence": 67,
+      "excerpt": "Produktová karta Vitality ve stavu Brzy s vazbou na projekty. Obsahová stránka je zatím minimální, což zvyšuje evidence gap v produktové připravenosti."
+    },
+    {
+      "id": "komfi-faq",
+      "pageId": "120bbfa8-450e-81b9-86cd-f160b2ebcce8",
+      "title": "Nejčastější otázky",
+      "url": "https://www.notion.so/120bbfa8450e81b986cdf160b2ebcce8",
+      "freshness": "verified",
+      "lastEdited": "2026-02-17T08:49:15.976Z",
+      "baseConfidence": 84,
+      "excerpt": "Operační a cenový FAQ k Bistro službě: rozvozový režim, minimální objednávka, membership pricing 199/299 Kč a procesní pravidla změn či reklamací."
+    },
+    {
+      "id": "komfi-pr-playbook",
+      "pageId": "2aebbfa8-450e-8095-8704-fd823cef5f6b",
+      "title": "Komfi PR playbook",
+      "url": "https://www.notion.so/2aebbfa8450e80958704fd823cef5f6b",
+      "freshness": "unknown",
+      "lastEdited": "2025-11-17T16:25:52.462Z",
+      "baseConfidence": 64,
+      "excerpt": "Detailní playbook growth komunikace inspirovaný earned-media strategiemi. Obsahuje konkrétní outreach scénáře, KPI rámec a milestone taktiky pro PR-led growth."
+    }
+  ],
+  "facts": [
+    {
+      "id": "komfi-strategie-f1",
+      "sourceId": "komfi-strategie",
+      "claim": "ACT I výsledek uvádí 100k doručených jídel a retenci navzdory limitům sortimentu.",
+      "hasNumericSignal": true
+    },
+    {
+      "id": "komfi-komunita-f1",
+      "sourceId": "komfi-komunita",
+      "claim": "Strategický cíl Komfi Komunita: 100+ obcí do konce roku 2026.",
+      "hasNumericSignal": true
+    },
+    {
+      "id": "komfi-bistro-f1",
+      "sourceId": "komfi-bistro",
+      "claim": "Cíl Bistro služby: růst aktivních klientů z 250 na 1000+ do konce 2026.",
+      "hasNumericSignal": true
+    },
+    {
+      "id": "komfi-faq-f1",
+      "sourceId": "komfi-faq",
+      "claim": "Členství je komunikováno na úrovni 199 Kč měsíčně při roční variantě a 299 Kč měsíčně při měsíční variantě.",
+      "hasNumericSignal": true
+    },
+    {
+      "id": "komfi-vitalita-spec-f1",
+      "sourceId": "komfi-vitalita-spec",
+      "claim": "Vitalita operuje s pravidelným testovacím cyklem 2x ročně a kontrolou po 6 měsících.",
+      "hasNumericSignal": true
+    }
+  ]
+}

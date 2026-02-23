@@ -1,0 +1,54 @@
+{
+  "mode": "core",
+  "freshnessProperty": "Aktuálnost obsahu",
+  "sources": [
+    {
+      "id": "komfi-strategie",
+      "pageId": "211bbfa8-450e-8044-84f0-edc6ba018abc",
+      "title": "Strategie",
+      "url": "https://www.notion.so/211bbfa8450e804484f0edc6ba018abc"
+    },
+    {
+      "id": "komfi-o-nas",
+      "pageId": "122bbfa8-450e-81e8-a46f-f6ad8861547f",
+      "title": "O nás",
+      "url": "https://www.notion.so/122bbfa8450e81e8a46ff6ad8861547f"
+    },
+    {
+      "id": "komfi-komunita",
+      "pageId": "211bbfa8-450e-81e7-982f-e3f4de8b1b2a",
+      "title": "Komfi Komunita – spolupráce s obcemi",
+      "url": "https://www.notion.so/211bbfa8450e81e7982fe3f4de8b1b2a"
+    },
+    {
+      "id": "komfi-vitalita-spec",
+      "pageId": "211bbfa8-450e-812c-9b40-ddf1e03d6b47",
+      "title": "Koncepce, specifikace a pilot Vitality",
+      "url": "https://www.notion.so/211bbfa8450e812c9b40ddf1e03d6b47"
+    },
+    {
+      "id": "komfi-bistro",
+      "pageId": "214bbfa8-450e-8085-88cf-cd8008e90fb0",
+      "title": "Komfi Bistro",
+      "url": "https://www.notion.so/214bbfa8450e808588cfcd8008e90fb0"
+    },
+    {
+      "id": "komfi-vitalita",
+      "pageId": "214bbfa8-450e-8091-91b6-c09882ec3483",
+      "title": "Komfi Vitalita",
+      "url": "https://www.notion.so/214bbfa8450e809191b6c09882ec3483"
+    },
+    {
+      "id": "komfi-faq",
+      "pageId": "120bbfa8-450e-81b9-86cd-f160b2ebcce8",
+      "title": "Nejčastější otázky",
+      "url": "https://www.notion.so/120bbfa8450e81b986cdf160b2ebcce8"
+    },
+    {
+      "id": "komfi-pr-playbook",
+      "pageId": "2aebbfa8-450e-8095-8704-fd823cef5f6b",
+      "title": "Komfi PR playbook",
+      "url": "https://www.notion.so/2aebbfa8450e80958704fd823cef5f6b"
+    }
+  ]
+}

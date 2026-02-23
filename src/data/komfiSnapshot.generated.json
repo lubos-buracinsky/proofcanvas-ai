@@ -1,0 +1,360 @@
+{
+  "versionTag": "v0.9 Preview",
+  "generatedAt": "2026-02-23T00:00:00.000Z",
+  "snapshotDaysValid": 14,
+  "sourceMode": "core",
+  "companyProfile": {
+    "name": "Komfi",
+    "thesis": "Komfi buduje membership-driven domácí péči propojující výživu, prevenci a navazující služby pro stárnoucí populaci.",
+    "strategicGoal": "Rozšířit program Komfi Komunita do 100+ obcí do konce roku 2026 a paralelně škálovat Bistro s připraveným launchpad pro Vitalitu."
+  },
+  "proofScore": {
+    "score": 68,
+    "confidence": 72,
+    "summary": "Strategie má silný problém-solution fit, funkční wedge produkt a konkrétní růstové cíle; hlavní nejistota je v rychlosti škálování distribučních kanálů a v přechodu Vitality do opakovatelného provozu.",
+    "citations": [
+      "komfi-strategie",
+      "komfi-komunita",
+      "komfi-bistro"
+    ]
+  },
+  "evidenceGapIndex": {
+    "percent": 39,
+    "confidence": 69,
+    "summary": "Core směr je dobře popsaný a částečně ověřený trakcí, ale některé klíčové části (např. Vitalita v plném měřítku a část partnerství) jsou zatím v pilotní nebo připravované fázi.",
+    "citations": [
+      "komfi-vitalita-spec",
+      "komfi-vitalita",
+      "komfi-komunita"
+    ]
+  },
+  "riskDecomposition": [
+    {
+      "category": "Demand Risk",
+      "score": 71,
+      "confidence": 74,
+      "note": "Silná poptávková teze je podpořena strukturálním demografickým tlakem, ale poptávka za hranou pilotních segmentů musí dál prokázat opakovatelnost.",
+      "citations": [
+        "komfi-o-nas",
+        "komfi-strategie"
+      ]
+    },
+    {
+      "category": "Monetization Risk",
+      "score": 62,
+      "confidence": 71,
+      "note": "Membership model a bistro pricing mají jasnou logiku, ale dlouhodobá marže při rychlé expanzi a kombinaci dotací je citlivá na provozní efektivitu.",
+      "citations": [
+        "komfi-bistro",
+        "komfi-faq",
+        "komfi-komunita"
+      ]
+    },
+    {
+      "category": "Distribution Risk",
+      "score": 65,
+      "confidence": 68,
+      "note": "Komunální GTM je dobře popsaný, ale výkon závisí na terénním execution tempu, kvalitě screening scoringu obcí a follow-up kapacitě týmu.",
+      "citations": [
+        "komfi-komunita"
+      ]
+    },
+    {
+      "category": "Execution Risk",
+      "score": 59,
+      "confidence": 70,
+      "note": "Projektová šíře (Bistro, Komunita, Vitalita) zvyšuje nároky na orchestrace týmů, procesů a datové návaznosti mezi službami.",
+      "citations": [
+        "komfi-strategie",
+        "komfi-vitalita-spec",
+        "komfi-bistro"
+      ]
+    },
+    {
+      "category": "AI Fragility Risk",
+      "score": 52,
+      "confidence": 63,
+      "note": "AI je klíčový akcelerátor interpretace a interní efektivity, ale robustnost výstupů a governance nad klinickým jazykem vyžaduje konzistentní kontrolní vrstvu.",
+      "citations": [
+        "komfi-vitalita-spec",
+        "komfi-pr-playbook"
+      ]
+    },
+    {
+      "category": "Regulatory Risk",
+      "score": 47,
+      "confidence": 67,
+      "note": "Silná pozice je v tom, že služba komunikuje screening/measurement framing bez léčebných slibů; riziko roste s rozšiřováním zdravotních claimů a partnerství.",
+      "citations": [
+        "komfi-vitalita-spec",
+        "komfi-o-nas"
+      ]
+    }
+  ],
+  "hypothesisLedger": [
+    {
+      "claim": "Komfi Komunita dokáže škálovat na 100+ obcí do konce roku 2026 při zachování kvality onboardingu.",
+      "test": "Průběžný tiered outreach + piloty s potvrzeným follow-up rytmem a konverzní disciplínou.",
+      "signal": "Rostoucí počet aktivních obcí a stabilní konverze pilot -> plná spolupráce ve čtvrtletních kohortách.",
+      "owner": "Partnership lead",
+      "status": "In validation",
+      "confidence": 68,
+      "citations": [
+        "komfi-komunita"
+      ]
+    },
+    {
+      "claim": "Bistro může růst z 250 na 1000+ aktivních klientů do konce roku 2026 bez rozpadu unit economics.",
+      "test": "Měsíční sledování retence, marže na klienta, logistické efektivity a mixu objednávek.",
+      "signal": "Současný růst klientské báze + stabilní retence + bez disproporčního růstu nákladů na rozvoz a support.",
+      "owner": "Product & operations",
+      "status": "In validation",
+      "confidence": 73,
+      "citations": [
+        "komfi-bistro",
+        "komfi-faq"
+      ]
+    },
+    {
+      "claim": "Vitalita dosáhne opakovatelné adopce mimo early adopters díky domácím odběrům a personalizovanému flow.",
+      "test": "Pilotní kohorty s trackingem dokončení flow, spokojenosti, opakovaného testu po 6 měsících a využití výstupů v navazujících službách.",
+      "signal": "Udržitelný conversion funnel + opakované objednávky + pozitivní uživatelské porozumění výsledkům.",
+      "owner": "Vitalita program owner",
+      "status": "Risky",
+      "confidence": 61,
+      "citations": [
+        "komfi-vitalita-spec",
+        "komfi-vitalita"
+      ]
+    },
+    {
+      "claim": "Earned-media strategie může zrychlit trust acquisition v cílovém segmentu bez vysokého paid spendu.",
+      "test": "PR sprinty navázané na milestone announcements + měření vlivu na inbound a brand search.",
+      "signal": "Kvalifikované inbound leady a vyšší conversion z trust-driven kanálů.",
+      "owner": "Brand & growth",
+      "status": "Planned",
+      "confidence": 58,
+      "citations": [
+        "komfi-pr-playbook"
+      ]
+    }
+  ],
+  "validation72h": [
+    {
+      "title": "Asset",
+      "detail": "Personalizovaný municipality pack: krátký briefing, kalkulačka přínosů a pilotní návrh pro konkrétní obec.",
+      "confidence": 69,
+      "citations": [
+        "komfi-komunita"
+      ]
+    },
+    {
+      "title": "Traffic",
+      "detail": "Prioritizovaný outreach na A-tier obce přes starostu/místostarostu + vedoucí sociálního odboru.",
+      "confidence": 70,
+      "citations": [
+        "komfi-komunita"
+      ]
+    },
+    {
+      "title": "Threshold",
+      "detail": "Do 72h validace: minimálně 5 kvalifikovaných reakcí a 2 potvrzené meetingy s obcí.",
+      "confidence": 64,
+      "citations": [
+        "komfi-komunita",
+        "komfi-pr-playbook"
+      ]
+    },
+    {
+      "title": "Decision",
+      "detail": "Pokud threshold splněn, priorita jde na pilot rollout a standardizovaný onboarding script; jinak iterace messagingu a target listu.",
+      "confidence": 67,
+      "citations": [
+        "komfi-komunita"
+      ]
+    }
+  ],
+  "aiLeverAnalysis": [
+    {
+      "label": "Scoring obcí a prioritizace outreach",
+      "value": "Vyšší throughput kvalifikace při nižší manuální režii",
+      "tone": "positive",
+      "confidence": 66,
+      "citations": [
+        "komfi-komunita"
+      ]
+    },
+    {
+      "label": "Interpretace Vitalita výsledků",
+      "value": "Zkrácení času od měření k akčnímu doporučení",
+      "tone": "positive",
+      "confidence": 70,
+      "citations": [
+        "komfi-vitalita-spec"
+      ]
+    },
+    {
+      "label": "Model risk v zdravotním jazyce",
+      "value": "Nutná striktní claim governance (screening vs. léčba)",
+      "tone": "neutral",
+      "confidence": 68,
+      "citations": [
+        "komfi-vitalita-spec"
+      ]
+    },
+    {
+      "label": "Ops automation v terénních procesech",
+      "value": "Potenciál násobit kapacitu bez lineárního růstu headcountu",
+      "tone": "positive",
+      "confidence": 60,
+      "citations": [
+        "komfi-pr-playbook",
+        "komfi-komunita"
+      ]
+    }
+  ],
+  "expansionTriggers": [
+    {
+      "trigger": "100+ zapojených obcí do konce 2026",
+      "status": "tracking",
+      "confidence": 67,
+      "citations": [
+        "komfi-komunita"
+      ]
+    },
+    {
+      "trigger": "1000+ aktivních Bistro klientů do konce 2026",
+      "status": "tracking",
+      "confidence": 73,
+      "citations": [
+        "komfi-bistro"
+      ]
+    },
+    {
+      "trigger": "Vitalita rollout po pilotu s pravidelným 6měsíčním retestem",
+      "status": "tracking",
+      "confidence": 62,
+      "citations": [
+        "komfi-vitalita-spec"
+      ]
+    },
+    {
+      "trigger": "Navázání pojišťovnových/externích partnerství pro širší dostupnost",
+      "status": "blocked",
+      "confidence": 55,
+      "citations": [
+        "komfi-o-nas",
+        "komfi-strategie"
+      ]
+    },
+    {
+      "trigger": "Stabilní retention při multi-service orchestration",
+      "status": "tracking",
+      "confidence": 64,
+      "citations": [
+        "komfi-strategie",
+        "komfi-bistro",
+        "komfi-vitalita-spec"
+      ]
+    }
+  ],
+  "portfolioDashboard": {
+    "riskDistribution": [
+      {
+        "label": "Demand",
+        "value": 24
+      },
+      {
+        "label": "Monetization",
+        "value": 19
+      },
+      {
+        "label": "Distribution",
+        "value": 20
+      },
+      {
+        "label": "Execution",
+        "value": 15
+      },
+      {
+        "label": "AI Fragility",
+        "value": 12
+      },
+      {
+        "label": "Regulatory",
+        "value": 10
+      }
+    ],
+    "historicalComparison": [
+      {
+        "deal": "Komfi Bistro / Current rollout",
+        "proofScore": 72,
+        "evidenceGap": 31,
+        "recommendation": "Scale with tight unit-economics guardrails",
+        "confidence": 74,
+        "citations": [
+          "komfi-bistro",
+          "komfi-faq"
+        ]
+      },
+      {
+        "deal": "Komfi Komunita / Municipal pilots",
+        "proofScore": 66,
+        "evidenceGap": 41,
+        "recommendation": "Prioritize tier-A municipalities and shorten pilot-to-contract cycle",
+        "confidence": 68,
+        "citations": [
+          "komfi-komunita"
+        ]
+      },
+      {
+        "deal": "Komfi Vitalita / Pre-scale",
+        "proofScore": 61,
+        "evidenceGap": 48,
+        "recommendation": "De-risk adoption funnel before broad expansion",
+        "confidence": 63,
+        "citations": [
+          "komfi-vitalita-spec",
+          "komfi-vitalita"
+        ]
+      }
+    ]
+  },
+  "vcMemo": {
+    "title": "Komfi v0.9 Preview Intelligence Memo",
+    "recommendation": "Proceed with conditional acceleration: keep Bistro momentum, force discipline in municipal GTM, and gate Vitalita scale on conversion + retest evidence.",
+    "bullets": [
+      "Wedge traction and strategic sequencing are strong enough to support controlled expansion.",
+      "Main near-term execution load is channel scalability and operational orchestration across parallel initiatives.",
+      "Evidence quality improves materially when pilot metrics are captured in a repeatable, source-linked reporting loop.",
+      "AI leverage is meaningful, but only if compliance-safe language and human review remain mandatory for health-facing outputs."
+    ],
+    "confidence": 70,
+    "citations": [
+      "komfi-strategie",
+      "komfi-komunita",
+      "komfi-vitalita-spec",
+      "komfi-bistro"
+    ]
+  },
+  "apiProjection": {
+    "deal_id": "komfi_preview_001",
+    "proofscore": 68,
+    "evidence_gap_index": 39,
+    "risk_ledger": {
+      "demand": 0.71,
+      "monetization": 0.62,
+      "distribution": 0.65
+    },
+    "validation_72h": {
+      "asset": "Municipality pitch pack + ROI calculator",
+      "threshold": "5 qualified responses and 2 confirmed meetings",
+      "decision": "Scale pilot outreach if threshold met; otherwise iterate positioning"
+    }
+  },
+  "sourceSummary": {
+    "totalSources": 8,
+    "staleSources": 2,
+    "averageBaseConfidence": 70
+  }
+}
